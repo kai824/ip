@@ -1,10 +1,14 @@
-class Task {
+abstract class Task {
     private boolean done;
     private String description;
 
     public Task(String description) {
         this.done = false;
         this.description = description;
+    }
+
+    public static Task of(String userInput) {
+        return new ToDo(userInput);
     }
 
     public void markDone() {

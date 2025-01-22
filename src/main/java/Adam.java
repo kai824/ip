@@ -21,8 +21,11 @@ public class Adam {
     }
 
     private static void addNew(String text) {
-        Adam.tasks.add(new Task(text));
-        outputText("added: " + text);
+        Task toAdd = Task.of(text);
+        Adam.tasks.add(toAdd);
+
+        outputText("Got it. I've added this task:");
+        outputText(" " + toAdd);
     }
 
     private static boolean checkIndexOverflow(int index) {
