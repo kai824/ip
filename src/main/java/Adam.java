@@ -3,13 +3,15 @@ import java.util.Scanner;
 
 public class Adam {
     private static ArrayList<Task> tasks;
+    private static final String INDENTATION = "    ";
 
     private static void printSeparatingLine() {
-        System.out.println("    ____________________________________________________________");
+        System.out.println(INDENTATION +
+            "____________________________________________________________");
     }
 
     private static void outputText(String text) {
-        System.out.println("     " + text);
+        System.out.println(INDENTATION + " " + text);
     }
 
     private static void listAll() {
