@@ -5,12 +5,16 @@ abstract class Task {
     private boolean done;
     private String description;
 
-    public Task(String description) {
+    public Task(String description) throws AdamException {
+        if (description.equals("")) {
+            throw new EmptyDescription();
+        }
         this.done = false;
         this.description = description;
     }
 
-    private static List<String> splitDescription(List<String> input, List<String> delimiters) {
+    private static List<String> splitDescription(List<String> input, List<String> delimiters) 
+        throws AdamException {
         String cur = "";
         int delimiterIndex = 0;
         List<String> results = new ArrayList<String>();
@@ -32,10 +36,14 @@ abstract class Task {
 
         results.add(cur);
 
+        if (delimiterIndex < delimiters.size()) {
+            throw new MissingArgument(delimiters.get(delimiterIndex));
+        }
+
         return results;
     }
 
-    public static Task of(String userInput) {
+    public static Task of(String userInput) throws AdamException {
         List<String> parts = List.of(userInput.split(" "));
         if (parts.get(0).equals("todo")) {
             List<String> split = splitDescription(parts, List.of());
@@ -47,8 +55,7 @@ abstract class Task {
             List<String> split = splitDescription(parts, List.of("/from", "/to"));
             return new Event(split.get(0), split.get(1), split.get(2));
         }
-        //TODO: throw exception
-        return null;
+        throw new InvalidCommand();
     }
 
     public void markDone() {
