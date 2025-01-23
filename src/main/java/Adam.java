@@ -56,6 +56,14 @@ public class Adam {
         outputText("  " + task);
     }
 
+    private static void deleteTask(int index) {
+        if(checkIndexOverflow(index)) return;
+        Task task = tasks.get(index-1);
+        tasks.remove(index-1);
+        outputText("OK, I've deleted this task:");
+        outputText("  " + task);
+    }
+
     public static void main(String[] args) {
         String CHATBOT_NAME = "Adam";
         printSeparatingLine();
@@ -82,6 +90,9 @@ public class Adam {
             } else if(inputParts[0].equals("unmark") && inputParts.length == 2) {
                 int index = Integer.parseInt(inputParts[1]);
                 unmarkDone(index);
+            } else if(inputParts[0].equals("delete") && inputParts.length == 2) {
+                int index = Integer.parseInt(inputParts[1]);
+                deleteTask(index);
             } else {
                 addNew(userInput);
             }
