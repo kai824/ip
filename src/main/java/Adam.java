@@ -33,7 +33,7 @@ public class Adam {
     }
 
     private static boolean checkIndexOverflow(int index) {
-        if (index > tasks.size()) {
+        if (index > tasks.size() || index <= 0) {
             outputText("Task index out of bounds!");
             return true;
         }

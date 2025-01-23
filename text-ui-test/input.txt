@@ -8,4 +8,9 @@ mark 2
 list
 unmark 2
 list
+invalid command
+mark 5
+unmark -1
+deadline /by empty description
+event missing argument /from no_to_field
 bye
