@@ -7,7 +7,7 @@ public class Adam {
 
     private static void printSeparatingLine() {
         System.out.println(INDENTATION +
-            "____________________________________________________________");
+                "____________________________________________________________");
     }
 
     private static void outputText(String text) {
@@ -42,7 +42,7 @@ public class Adam {
 
     private static void markDone(int index) {
         if(checkIndexOverflow(index)) return;
-        Task task = tasks.get(index-1);
+        Task task = tasks.get(index - 1);
         task.markDone();
         outputText("Nice! I've marked this task as done:");
         outputText("  " + task);
