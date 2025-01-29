@@ -3,22 +3,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Adam {
-    private static TaskManager manager;
-    private static final String INDENTATION = "    ";
-
-    private static void printSeparatingLine() {
-        System.out.println(INDENTATION +
-                "____________________________________________________________");
-    }
-
-    private static void outputText(String text) {
-        System.out.println(INDENTATION + " " + text);
-    }
+    private static TaskList manager;
+    private static Ui ui;
 
     private static void listAll() {
         ArrayList<String> outputs = manager.listAll();
         for (String output : outputs) {
-            outputText(output);
+            ui.outputText(output);
         }
     }
 
@@ -27,10 +18,10 @@ public class Adam {
             LocalDate parsedDate = Task.parseDate(date);
             ArrayList<String> outputs = manager.listAllOnDate(parsedDate);
             for (String output : outputs) {
-                outputText(output);
+                ui.outputText(output);
             }
         } catch (AdamException e) {
-            outputText("Oh no! " + e);
+            ui.outputText("Oh no! " + e);
         }
     }
 
@@ -39,52 +30,53 @@ public class Adam {
             Task toAdd = Task.of(text);
             manager.addTask(toAdd);
 
-            outputText("Got it. I've added this task:");
-            outputText(" " + toAdd);
+            ui.outputText("Got it. I've added this task:");
+            ui.outputText(" " + toAdd);
         } catch (AdamException e) {
-            outputText("Oh no! " + e);
+            ui.outputText("Oh no! " + e);
         }
     }
 
     private static void markDone(int index) {
         try {
             String taskText = manager.markDone(index - 1);
-            outputText("Nice! I've marked this task as done:");
-            outputText("  " + taskText);
+            ui.outputText("Nice! I've marked this task as done:");
+            ui.outputText("  " + taskText);
         } catch (IndexOutOfBoundsException e) {
-            outputText("Task index out of bounds!");
+            ui.outputText("Task index out of bounds!");
         }
     }
 
     private static void unmarkDone(int index) {
         try {
             String taskText = manager.unmarkDone(index-1);
-            outputText("OK, I've marked this task as not done yet:");
-            outputText("  " + taskText);
+            ui.outputText("OK, I've marked this task as not done yet:");
+            ui.outputText("  " + taskText);
         } catch (IndexOutOfBoundsException e) {
-            outputText("Task index out of bounds!");
+            ui.outputText("Task index out of bounds!");
         }
     }
 
     private static void deleteTask(int index) {
         try {
             Task task = manager.deleteTask(index - 1);
-            outputText("OK, I've deleted this task:");
-            outputText("  " + task);
+            ui.outputText("OK, I've deleted this task:");
+            ui.outputText("  " + task);
         } catch (IndexOutOfBoundsException e) {
-            outputText("Task index out of bounds!");
+            ui.outputText("Task index out of bounds!");
         }
     }
 
     public static void main(String[] args) {
         String CHATBOT_NAME = "Adam";
-        printSeparatingLine();
-        outputText("Hello! I'm " + CHATBOT_NAME);
-        outputText("What can I do for you?");
-        printSeparatingLine();
+        ui = new Ui();
+        ui.printSeparatingLine();
+        ui.outputText("Hello! I'm " + CHATBOT_NAME);
+        ui.outputText("What can I do for you?");
+        ui.printSeparatingLine();
 
         Scanner sc = new Scanner(System.in);
-        manager = new TaskManager();
+        manager = new TaskList(new Storage());
 
         while(true) {
             String userInput = sc.nextLine();
@@ -92,7 +84,7 @@ public class Adam {
                 break;
             }
             
-            printSeparatingLine();
+            ui.printSeparatingLine();
             String[] inputParts = userInput.split(" ");
             if (userInput.equals("list")){
                 listAll();
@@ -110,11 +102,11 @@ public class Adam {
             } else {
                 addNew(userInput);
             }
-            printSeparatingLine();
+            ui.printSeparatingLine();
         }
 
-        printSeparatingLine();
-        outputText("Bye. Hope to see you again soon!");
-        printSeparatingLine();
+        ui.printSeparatingLine();
+        ui.outputText("Bye. Hope to see you again soon!");
+        ui.printSeparatingLine();
     }
 }
