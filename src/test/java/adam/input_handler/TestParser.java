@@ -5,7 +5,13 @@ import adam.exceptions.AdamException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test class for Parser.
+ */
 public class TestParser {
+    /**
+     * Tests the parseInputDate method.
+     */
     @Test
     public void testParseInputDate() {
         try {
@@ -15,6 +21,9 @@ public class TestParser {
         }
     }
 
+    /**
+     * Tests the toOutputDate method.
+     */
     @Test
     public void testToOutputDate() {
         try {
@@ -24,6 +33,9 @@ public class TestParser {
         }
     }
 
+    /**
+     * Tests the toLogDate method.
+     */
     @Test
     public void testToLogDate() {
         try {
@@ -33,6 +45,9 @@ public class TestParser {
         }
     }
 
+    /**
+     * Tests the parseInput method.
+     */
     @Test
     public void testParseInput() {
         try {

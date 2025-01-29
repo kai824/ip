@@ -9,7 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Test class for TaskList.
+ */
 public class TestTaskList {
+    /**
+     * Tests the listAll method.
+     */
     @Test
     public void testListAll() {
         try {
@@ -33,6 +39,9 @@ public class TestTaskList {
         }
     }
 
+    /**
+     * Tests the markDone method.
+     */
     @Test
     public void testMarkDone() {
         try {
@@ -55,6 +64,9 @@ public class TestTaskList {
         }
     }
 
+    /**
+     * Tests the listAllOnDate method.
+     */
     @Test
     public void testListAllOnDate() {
         try {
@@ -75,6 +87,9 @@ public class TestTaskList {
     }
 }
 
+/**
+ * Stub class for Storage.
+ */
 class StubStorage extends Storage {
     StubStorage() {
         super();
@@ -91,6 +106,9 @@ class StubStorage extends Storage {
     }
 }
 
+/**
+ * Stub class for Task.
+ */
 class StubTask extends Task {
     private String description;
     StubTask(String description) throws AdamException {
