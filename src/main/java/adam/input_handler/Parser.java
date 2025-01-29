@@ -43,6 +43,8 @@ public class Parser {
             return new UnmarkCommand(input);
         } else if(DeleteCommand.matches(input)) {
             return new DeleteCommand(input);
+        } else if(FindCommand.matches(input)) {
+            return new FindCommand(input);
         } else {
             // throws AdamException if invalid input
             return new AddCommand(input);

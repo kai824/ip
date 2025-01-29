@@ -36,6 +36,18 @@ public class TaskList {
         return outputs;
     }
 
+    public ArrayList<String> listMatches(String query) {
+        ArrayList<String> outputs = new ArrayList<>();
+        for (int i = 0; i < this.tasks.size(); i++) {
+            Task task = this.tasks.get(i);
+            if (task.contains(query)) {
+                outputs.add(String.format("%d. %s", i + 1, task));
+            }
+        }
+
+        return outputs;
+    }
+
     public void addTask(Task task) {
         this.tasks.add(task);
         this.storage.saveLog(this.tasks);
