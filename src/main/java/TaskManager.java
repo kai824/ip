@@ -1,7 +1,11 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 class TaskManager {
     private ArrayList<Task> tasks;
+    private static final String LOG_PATH_FILE = "./data/adam_log.log";
 
     TaskManager() {
         this.tasks = new ArrayList<>();
@@ -15,18 +19,53 @@ class TaskManager {
         
         return outputs;
     }
-    
-    Task get(int index) {
-        // may throw IndexOutOfBoundsException
-        return this.tasks.get(index);
-    }
 
-    void addTask(Task task) {
+    public void addTask(Task task) {
         this.tasks.add(task);
+        this.saveLog();
     }
 
-    Task deleteTask(int index) {
+    public Task deleteTask(int index) {
         // may throw IndexOutOfBoundsException
-        return this.tasks.remove(index);
+        Task deletedTask = this.tasks.remove(index);
+
+        this.saveLog();
+        return deletedTask;
+    }
+
+    public String markDone(int index) {
+        // may throw IndexOutOfBoundsException
+        Task task = this.tasks.get(index);
+        task.markDone();
+
+        this.saveLog();
+        return task.toString();
+    }
+
+    public String unmarkDone(int index) {
+        // may throw IndexOutOfBoundsException
+        Task task = this.tasks.get(index);
+        task.unmarkDone();
+
+        this.saveLog();
+        return task.toString();
+    }
+
+    private void saveLog() {
+        try {
+            File file = new File(this.LOG_PATH_FILE);
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+
+            FileWriter writer = new FileWriter(this.LOG_PATH_FILE);
+            for (Task task : this.tasks) {
+                writer.write(task.log() + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error saving task list to file: " + e);
+        }
     }
 }

@@ -35,10 +35,9 @@ public class Adam {
 
     private static void markDone(int index) {
         try {
-            Task task = manager.get(index - 1);
-            task.markDone();
+            String taskText = manager.markDone(index - 1);
             outputText("Nice! I've marked this task as done:");
-            outputText("  " + task);
+            outputText("  " + taskText);
         } catch (IndexOutOfBoundsException e) {
             outputText("Task index out of bounds!");
         }
@@ -46,10 +45,9 @@ public class Adam {
 
     private static void unmarkDone(int index) {
         try {
-            Task task = manager.get(index-1);
-            task.unmarkDone();
+            String taskText = manager.unmarkDone(index-1);
             outputText("OK, I've marked this task as not done yet:");
-            outputText("  " + task);
+            outputText("  " + taskText);
         } catch (IndexOutOfBoundsException e) {
             outputText("Task index out of bounds!");
         }

@@ -74,4 +74,8 @@ abstract class Task {
             return "[ ] " + this.description;
         }
     }
+
+    public String log() {
+        return this.isDone + " | " + this.description;
+    }
 }

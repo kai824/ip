@@ -10,4 +10,10 @@ class Deadline extends Task {
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), this.deadline);
     }
+
+    @Override
+    public String log() {
+        // Assuming that the deadline does not contain the delimiter "|" character
+        return String.format("D | %s | %s", super.log(), this.deadline);
+    }
 }
