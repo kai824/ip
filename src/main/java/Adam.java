@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Adam {
-    private static ArrayList<Task> tasks;
+    private static TaskManager manager;
     private static final String INDENTATION = "    ";
 
     private static void printSeparatingLine() {
@@ -15,15 +15,16 @@ public class Adam {
     }
 
     private static void listAll() {
-        for (int i = 0; i < Adam.tasks.size(); i++) {
-            outputText(String.format("%d. %s", i + 1, Adam.tasks.get(i)));
+        ArrayList<String> outputs = manager.listAll();
+        for (String output : outputs) {
+            outputText(output);
         }
     }
 
     private static void addNew(String text) {
         try {
             Task toAdd = Task.of(text);
-            Adam.tasks.add(toAdd);
+            manager.addTask(toAdd);
 
             outputText("Got it. I've added this task:");
             outputText(" " + toAdd);
@@ -32,36 +33,36 @@ public class Adam {
         }
     }
 
-    private static boolean checkIndexOverflow(int index) {
-        if (index > tasks.size() || index <= 0) {
-            outputText("Task index out of bounds!");
-            return true;
-        }
-        return false;
-    }
-
     private static void markDone(int index) {
-        if(checkIndexOverflow(index)) return;
-        Task task = tasks.get(index - 1);
-        task.markDone();
-        outputText("Nice! I've marked this task as done:");
-        outputText("  " + task);
+        try {
+            Task task = manager.get(index - 1);
+            task.markDone();
+            outputText("Nice! I've marked this task as done:");
+            outputText("  " + task);
+        } catch (IndexOutOfBoundsException e) {
+            outputText("Task index out of bounds!");
+        }
     }
 
     private static void unmarkDone(int index) {
-        if(checkIndexOverflow(index)) return;
-        Task task = tasks.get(index-1);
-        task.unmarkDone();
-        outputText("OK, I've marked this task as not done yet:");
-        outputText("  " + task);
+        try {
+            Task task = manager.get(index-1);
+            task.unmarkDone();
+            outputText("OK, I've marked this task as not done yet:");
+            outputText("  " + task);
+        } catch (IndexOutOfBoundsException e) {
+            outputText("Task index out of bounds!");
+        }
     }
 
     private static void deleteTask(int index) {
-        if(checkIndexOverflow(index)) return;
-        Task task = tasks.get(index-1);
-        tasks.remove(index-1);
-        outputText("OK, I've deleted this task:");
-        outputText("  " + task);
+        try {
+            Task task = manager.deleteTask(index - 1);
+            outputText("OK, I've deleted this task:");
+            outputText("  " + task);
+        } catch (IndexOutOfBoundsException e) {
+            outputText("Task index out of bounds!");
+        }
     }
 
     public static void main(String[] args) {
@@ -72,7 +73,7 @@ public class Adam {
         printSeparatingLine();
 
         Scanner sc = new Scanner(System.in);
-        tasks = new ArrayList<Task>();
+        manager = new TaskManager();
 
         while(true) {
             String userInput = sc.nextLine();
