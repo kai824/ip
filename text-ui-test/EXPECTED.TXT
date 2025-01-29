@@ -71,7 +71,7 @@
      3. [D][X] another task (by: 31 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
-     Oh no! InvalidCommand: Command not recognised! Valid commands are: list, todo, deadline, event, bye
+     Oh no! adam.exceptions.InvalidCommand: Command not recognised! Valid commands are: list, todo, deadline, event, bye
     ____________________________________________________________
     ____________________________________________________________
      Task index out of bounds!
@@ -83,13 +83,13 @@
      Task index out of bounds!
     ____________________________________________________________
     ____________________________________________________________
-     Oh no! EmptyDescription: Description is empty!
+     Oh no! adam.exceptions.EmptyDescription: Description is empty!
     ____________________________________________________________
     ____________________________________________________________
-     Oh no! MissingArgument: Argument /to is missing!
+     Oh no! adam.exceptions.MissingArgument: Argument /to is missing!
     ____________________________________________________________
     ____________________________________________________________
-     Oh no! InvalidDate: Date format is invalid!
+     Oh no! adam.exceptions.InvalidDate: Date format is invalid!
     ____________________________________________________________
     ____________________________________________________________
      Bye. Hope to see you again soon!
@@ -183,6 +183,15 @@
      4. [E][ ] test event (from: 15 Feb 2026 to: 25 Feb 2026)
      5. [E][ ] test event2 (from: 10 Feb 2026 to: 20 Feb 2026)
      6. [D][ ] ddl1 (by: 17 Feb 2026)
+    ____________________________________________________________
+    ____________________________________________________________
+     6. [D][ ] ddl1 (by: 17 Feb 2026)
+     7. [D][ ] ddl2 (by: 18 Feb 2026)
+    ____________________________________________________________
+    ____________________________________________________________
+     3. [T][ ] test adding another task
+     4. [E][ ] test event (from: 15 Feb 2026 to: 25 Feb 2026)
+     5. [E][ ] test event2 (from: 10 Feb 2026 to: 20 Feb 2026)
     ____________________________________________________________
     ____________________________________________________________
      Bye. Hope to see you again soon!
