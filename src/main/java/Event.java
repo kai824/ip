@@ -13,4 +13,10 @@ class Event extends Task {
         return String.format("[E]%s (from: %s to: %s)", super.toString(),
                 this.from, this.to);
     }
+
+    @Override
+    public String log() {
+        // Assuming that the from/to does not contain the delimiter "|" character
+        return String.format("E | %s | %s | %s", super.log(), this.from, this.to);
+    }
 }

@@ -2,14 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class Task {
-    private boolean done;
+    private boolean isDone;
     private String description;
 
     public Task(String description) throws AdamException {
         if (description.equals("")) {
             throw new EmptyDescription();
         }
-        this.done = false;
+        this.isDone = false;
         this.description = description;
     }
 
@@ -58,20 +58,47 @@ abstract class Task {
         throw new InvalidCommand();
     }
 
+    public static Task fromLog(String logText) throws AdamException {
+        // | is a special character in regex, so we need to escape it
+        List<String> parts = List.of(logText.split(" \\| "));
+        Task task = null;
+        try {
+            if (parts.get(0).equals("T")) {
+                task = new ToDo(parts.get(2));
+            } else if(parts.get(0).equals("D")) {
+                task = new Deadline(parts.get(2), parts.get(3));
+            } else if(parts.get(0).equals("E")) {
+                task = new Event(parts.get(2), parts.get(3), parts.get(4));
+            } else {
+                throw new InvalidLogFile();
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidLogFile();
+        }
+        if (parts.get(1) == "true") {
+            task.markDone();
+        }
+        return task;
+    }
+
     public void markDone() {
-        this.done = true;
+        this.isDone = true;
     }
 
     public void unmarkDone() {
-        this.done = false;
+        this.isDone = false;
     }
 
     @Override
     public String toString() {
-        if (this.done) {
+        if (this.isDone) {
             return "[X] " + this.description;
         } else {
             return "[ ] " + this.description;
         }
+    }
+
+    public String log() {
+        return this.isDone + " | " + this.description;
     }
 }
