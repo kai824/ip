@@ -5,7 +5,7 @@ import adam.core.Ui;
 import adam.exceptions.AdamException;
 
 public class ByeCommand extends Command {
-    public static boolean matches(String input) {
+    public static boolean isMatch(String input) {
         return input.equals("bye");
     }
 

@@ -13,7 +13,7 @@ public class AddCommand extends Command {
         this.newTask = Task.of(input);
     }
 
-    public static boolean matches(String input) {
+    public static boolean isMatch(String input) {
         try {
             Task.of(input);
             return true;

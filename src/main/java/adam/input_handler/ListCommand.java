@@ -7,7 +7,7 @@ import adam.exceptions.AdamException;
 import java.util.ArrayList;
 
 public class ListCommand extends Command {
-    public static boolean matches(String input) {
+    public static boolean isMatch(String input) {
         return input.equals("list");
     }
 

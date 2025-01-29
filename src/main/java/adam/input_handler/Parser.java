@@ -29,17 +29,17 @@ public class Parser {
     }
 
     public static Command parseInput(String input) throws AdamException {
-        if (ByeCommand.matches(input)) {
+        if (ByeCommand.isMatch(input)) {
             return new ByeCommand();
-        } else if (ListCommand.matches(input)) {
+        } else if (ListCommand.isMatch(input)) {
             return new ListCommand();
-        } else if (ListOnCommand.matches(input)) {
+        } else if (ListOnCommand.isMatch(input)) {
             return new ListOnCommand(input);
-        } else if (DoneCommand.matches(input)) {
+        } else if (DoneCommand.isMatch(input)) {
             return new DoneCommand(input);
-        } else if (UnmarkCommand.matches(input)) {
+        } else if (UnmarkCommand.isMatch(input)) {
             return new UnmarkCommand(input);
-        } else if (DeleteCommand.matches(input)) {
+        } else if (DeleteCommand.isMatch(input)) {
             return new DeleteCommand(input);
         } else {
             // throws AdamException if invalid input

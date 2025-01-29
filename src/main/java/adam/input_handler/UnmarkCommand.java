@@ -12,7 +12,7 @@ public class UnmarkCommand extends Command {
         this.index = Integer.parseInt(input.split(" ")[1]) - 1;
     }
 
-    public static boolean matches(String input) {
+    public static boolean isMatch(String input) {
         String[] inputParts = input.split(" ");
         return inputParts[0].equals("unmark") && inputParts.length == 2;
     }
