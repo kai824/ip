@@ -1,4 +1,6 @@
-class InvalidDate extends AdamException {
+package adam.exceptions;
+
+public class InvalidDate extends AdamException {
     private static String defaultErrorMsg = "Date format is invalid!";
     
     public InvalidDate() {

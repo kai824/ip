@@ -1,9 +1,16 @@
+package adam.input_handler;
+
+import adam.core.TaskList;
+import adam.core.Ui;
+import adam.exceptions.AdamException;
+import adam.exceptions.InvalidDate;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
-class Parser {
+public class Parser {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
 

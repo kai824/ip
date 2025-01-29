@@ -1,6 +1,12 @@
+package adam.input_handler;
+
+import adam.core.TaskList;
+import adam.core.Ui;
+import adam.exceptions.AdamException;
+
 import java.util.ArrayList;
 
-class DoneCommand extends Command {
+public class DoneCommand extends Command {
     private int index;
 
     DoneCommand(String input) throws AdamException{

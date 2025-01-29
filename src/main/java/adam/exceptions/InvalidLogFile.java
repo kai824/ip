@@ -1,4 +1,6 @@
-class InvalidLogFile extends AdamException {
+package adam.exceptions;
+
+public class InvalidLogFile extends AdamException {
     private static String defaultErrorMsg = "Log file format is invalid!";
     
     public InvalidLogFile() {

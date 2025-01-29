@@ -1,4 +1,10 @@
-class ByeCommand extends Command {
+package adam.input_handler;
+
+import adam.core.TaskList;
+import adam.core.Ui;
+import adam.exceptions.AdamException;
+
+public class ByeCommand extends Command {
     public static boolean matches(String input) {
         return input.equals("bye");
     }

@@ -1,3 +1,10 @@
+package adam.core;
+
+import adam.input_handler.Command;
+import adam.input_handler.Parser;
+import adam.exceptions.AdamException;
+import adam.exceptions.EmptyDescription;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 

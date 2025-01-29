@@ -1,6 +1,11 @@
+package adam.tasks;
+
+import adam.exceptions.AdamException;
+import adam.input_handler.Parser;
+
 import java.time.LocalDate;
 
-class Deadline extends Task {
+public class Deadline extends Task {
     private LocalDate deadline;
 
     public Deadline(String description, LocalDate deadline) throws AdamException {

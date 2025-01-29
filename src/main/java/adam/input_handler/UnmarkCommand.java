@@ -1,6 +1,12 @@
+package adam.input_handler;
+
+import adam.core.TaskList;
+import adam.core.Ui;
+import adam.exceptions.AdamException;
+
 import java.util.ArrayList;
 
-class UnmarkCommand extends Command {
+public class UnmarkCommand extends Command {
     private int index;
 
     UnmarkCommand(String input) throws AdamException{
