@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,6 +19,18 @@ public class Adam {
         ArrayList<String> outputs = manager.listAll();
         for (String output : outputs) {
             outputText(output);
+        }
+    }
+
+    private static void listAllOnDate(String date) {
+        try {
+            LocalDate parsedDate = Task.parseDate(date);
+            ArrayList<String> outputs = manager.listAllOnDate(parsedDate);
+            for (String output : outputs) {
+                outputText(output);
+            }
+        } catch (AdamException e) {
+            outputText("Oh no! " + e);
         }
     }
 
@@ -92,6 +105,8 @@ public class Adam {
             } else if(inputParts[0].equals("delete") && inputParts.length == 2) {
                 int index = Integer.parseInt(inputParts[1]);
                 deleteTask(index);
+            } else if(inputParts[0].equals("listOn") && inputParts.length == 2) {
+                listAllOnDate(inputParts[1]);
             } else {
                 addNew(userInput);
             }

@@ -48,7 +48,7 @@ abstract class Task {
         return results;
     }
 
-    private static LocalDate parseDate(String date) throws AdamException {
+    public static LocalDate parseDate(String date) throws AdamException {
         try{
             return LocalDate.parse(date, Task.DATE_FORMAT);
         } catch (DateTimeParseException e) {
@@ -116,4 +116,6 @@ abstract class Task {
     public String log() {
         return this.isDone + " | " + this.description;
     }
+
+    abstract public boolean isOn(LocalDate date);
 }

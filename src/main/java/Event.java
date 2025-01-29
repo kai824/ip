@@ -24,4 +24,11 @@ class Event extends Task {
                 this.from.format(super.DATE_FORMAT),
                 this.to.format(super.DATE_FORMAT));
     }
+
+    @Override
+    public boolean isOn(LocalDate date) {
+        // this.from <= date <= this.to
+        return (this.from.isBefore(date) || this.from.equals(date)) &&
+                (this.to.isAfter(date) || this.to.equals(date));
+    }
 }

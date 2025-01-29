@@ -20,4 +20,9 @@ class Deadline extends Task {
         return String.format("D | %s | %s", super.log(),
                 this.deadline.format(super.DATE_FORMAT));
     }
+
+    @Override
+    public boolean isOn(LocalDate date) {
+        return this.deadline.equals(date);
+    }
 }
