@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,8 +48,12 @@ abstract class Task {
         return results;
     }
 
-    private static LocalDate parseDate(String date) {
-        return LocalDate.parse(date, Task.DATE_FORMAT);
+    private static LocalDate parseDate(String date) throws AdamException {
+        try{
+            return LocalDate.parse(date, Task.DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDate();
+        }
     }
 
     public static Task of(String userInput) throws AdamException {
