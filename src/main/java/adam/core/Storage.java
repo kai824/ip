@@ -10,18 +10,33 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents the storage of tasks.
+ */
 public class Storage {
+    /** Default path of log file if none is specified */
     private static final String DEFAULT_PATH_FILE = "./data/adam_log.log";
+
+    /** Path of log file */
     private final String LOG_PATH_FILE;
 
     Storage(String path) {
         this.LOG_PATH_FILE = path;
     }
 
+    /**
+     * Alternate constructor for Storage with default path.
+     */
     Storage() {
         this.LOG_PATH_FILE = Storage.DEFAULT_PATH_FILE;
     }
 
+    /**
+     * Loads the log file.
+     * If any error occurs, an empty ArrayList is returned.
+     * 
+     * @return ArrayList of tasks from log file
+     */
     public ArrayList<Task> loadLog() {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
@@ -42,6 +57,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the log file.
+     * 
+     * @param tasks Tasks to save
+     */
     public void saveLog(ArrayList<Task> tasks) {
         try {
             File file = new File(this.LOG_PATH_FILE);

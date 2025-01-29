@@ -7,7 +7,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Static methods to parse user input and create commands.
+ */
 public class Parser {
+    /** DateTime Format for dates to be read and output */
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final DateTimeFormatter OUTPUT_DATE_FORMAT =
             DateTimeFormatter.ofPattern("dd MMM yyyy");
@@ -20,14 +24,33 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts a LocalDate to a string in the format dd MMM yyyy.
+     * 
+     * @param date The date to convert.
+     * @return The date as a string in the format dd MMM yyyy.
+     */
     public static String toOutputDate(LocalDate date) {
         return date.format(Parser.OUTPUT_DATE_FORMAT);
     }
 
+    /**
+     * Converts a LocalDate to a string in the format dd-MM-yyyy.
+     * 
+     * @param date The date to convert.
+     * @return The date as a string in the format dd-MM-yyyy.
+     */
     public static String toLogDate(LocalDate date) {
         return date.format(Parser.DATE_FORMAT);
     }
 
+    /**
+     * Parses the input and returns the corresponding command.
+     * 
+     * @param input The input to parse.
+     * @return The corresponding command.
+     * @throws AdamException If the input is invalid.
+     */
     public static Command parseInput(String input) throws AdamException {
         if (ByeCommand.isMatch(input)) {
             return new ByeCommand();

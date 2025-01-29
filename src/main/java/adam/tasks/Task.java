@@ -11,8 +11,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a task that has to be done.
+ */
 public abstract class Task {
+    /** Represents if the task is done */
     private boolean isDone;
+    /** String representing a description of the task */
     private String description;
 
     public Task(String description) throws AdamException {
@@ -23,6 +28,14 @@ public abstract class Task {
         this.description = description;
     }
 
+    /**
+     * Splits the input into a description and a list of delimiters.
+     * 
+     * @param input A list of input parts to be split.
+     * @param delimiters A list of delimiters to split the input by.
+     * @return A list of strings representing the split input.
+     * @throws AdamException If a delimiter is missing.
+     */
     private static List<String> splitDescription(List<String> input, List<String> delimiters) 
         throws AdamException {
         String cur = "";
@@ -53,6 +66,13 @@ public abstract class Task {
         return results;
     }
 
+    /**
+     * Creates a task from user input.
+     * 
+     * @param userInput String representing the user input.
+     * @return A task object representing the user input.
+     * @throws AdamException If the user input is invalid.
+     */
     public static Task of(String userInput) throws AdamException {
         List<String> parts = List.of(userInput.split(" "));
         if (parts.get(0).equals("todo")) {
@@ -69,6 +89,13 @@ public abstract class Task {
         throw new InvalidCommand();
     }
 
+    /**
+     * Creates a task from a log file.
+     * 
+     * @param logText The log text to create the task from.
+     * @return A task object representing the log text.
+     * @throws AdamException If the log text is invalid.
+     */
     public static Task fromLog(String logText) throws AdamException {
         // | is a special character in regex, so we need to escape it
         List<String> parts = List.of(logText.split(" \\| "));
@@ -93,15 +120,27 @@ public abstract class Task {
         return task;
     }
 
+    /**
+     * Marks the task as done
+     */
     public void markDone() {
         this.isDone = true;
     }
 
+    /**
+     * Marks the task as not done
+     */
     public void unmarkDone() {
         this.isDone = false;
     }
 
-    public boolean contains(String query) {
+    /**
+     * Checks if the task contains a query string
+     * 
+     * @param query The query string to check for.
+     * @return True if the task contains the query string, false otherwise.
+     */
+    public boolean containsQuery(String query) {
         return this.description.contains(query);
     }
 
@@ -114,6 +153,11 @@ public abstract class Task {
         }
     }
 
+    /**
+     * Gets the description of the task for logging.
+     * 
+     * @return the description to be logged.
+     */
     public String log() {
         return this.isDone + " | " + this.description;
     }
