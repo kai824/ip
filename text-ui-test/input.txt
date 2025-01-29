@@ -10,6 +10,10 @@ unmark 2
 list
 delete 2
 list
+deadline another task /by Monday
+list
+mark 3
+list
 invalid command
 mark 5
 unmark -1
