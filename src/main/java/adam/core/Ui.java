@@ -1,6 +1,8 @@
+package adam.core;
+
 import java.util.Scanner;
 
-class Ui {
+public class Ui {
     private static final String INDENTATION = "    ";
     private static final String CHATBOT_NAME = "    ";
     private Scanner scanner;

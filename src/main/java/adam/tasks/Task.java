@@ -1,8 +1,17 @@
+package adam.tasks;
+
+import adam.exceptions.AdamException;
+import adam.exceptions.EmptyDescription;
+import adam.exceptions.InvalidCommand;
+import adam.exceptions.InvalidLogFile;
+import adam.exceptions.MissingArgument;
+import adam.input_handler.Parser;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class Task {
+public abstract class Task {
     private boolean isDone;
     private String description;
 

@@ -1,3 +1,8 @@
+package adam.core;
+
+import adam.exceptions.AdamException;
+import adam.tasks.Task;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -5,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Storage {
+public class Storage {
     private static final String DEFAULT_PATH_FILE = "./data/adam_log.log";
     private final String LOG_PATH_FILE;
 

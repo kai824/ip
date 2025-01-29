@@ -1,6 +1,12 @@
+package adam.input_handler;
+
+import adam.core.TaskList;
+import adam.core.Ui;
+import adam.exceptions.AdamException;
+
 import java.util.ArrayList;
 
-class ListCommand extends Command {
+public class ListCommand extends Command {
     public static boolean matches(String input) {
         return input.equals("list");
     }

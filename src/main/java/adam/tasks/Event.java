@@ -1,6 +1,11 @@
+package adam.tasks;
+
+import adam.exceptions.AdamException;
+import adam.input_handler.Parser;
+
 import java.time.LocalDate;
 
-class Event extends Task {
+public class Event extends Task {
     private LocalDate from;
     private LocalDate to;
 

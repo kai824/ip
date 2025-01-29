@@ -1,6 +1,10 @@
+package adam.tasks;
+
+import adam.exceptions.AdamException;
+
 import java.time.LocalDate;
 
-class ToDo extends Task {
+public class ToDo extends Task {
     public ToDo(String description) throws AdamException {
         super(description);
     }
