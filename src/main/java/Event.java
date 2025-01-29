@@ -1,8 +1,10 @@
-class Event extends Task {
-    private String from;
-    private String to;
+import java.time.LocalDate;
 
-    public Event(String description, String from, String to) throws AdamException {
+class Event extends Task {
+    private LocalDate from;
+    private LocalDate to;
+
+    public Event(String description, LocalDate from, LocalDate to) throws AdamException {
         super(description);
         this.from = from;
         this.to = to;
@@ -11,12 +13,22 @@ class Event extends Task {
     @Override
     public String toString() {
         return String.format("[E]%s (from: %s to: %s)", super.toString(),
-                this.from, this.to);
+                this.from.format(super.OUTPUT_DATE_FORMAT),
+                this.to.format(super.OUTPUT_DATE_FORMAT));
     }
 
     @Override
     public String log() {
-        // Assuming that the from/to does not contain the delimiter "|" character
-        return String.format("E | %s | %s | %s", super.log(), this.from, this.to);
+        // Format back into the input format
+        return String.format("E | %s | %s | %s", super.log(), 
+                this.from.format(super.DATE_FORMAT),
+                this.to.format(super.DATE_FORMAT));
+    }
+
+    @Override
+    public boolean isOn(LocalDate date) {
+        // this.from <= date <= this.to
+        return (this.from.isBefore(date) || this.from.equals(date)) &&
+                (this.to.isAfter(date) || this.to.equals(date));
     }
 }

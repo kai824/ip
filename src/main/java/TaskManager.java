@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -34,6 +35,18 @@ class TaskManager {
             outputs.add(String.format("%d. %s", i + 1, this.tasks.get(i)));
         }
         
+        return outputs;
+    }
+
+    public ArrayList<String> listAllOnDate(LocalDate date) {
+        ArrayList<String> outputs = new ArrayList<>();
+        for (int i = 0; i < this.tasks.size(); i++) {
+            Task task = this.tasks.get(i);
+            if (task.isOn(date)) {
+                outputs.add(String.format("%d. %s", i + 1, task));
+            }
+        }
+
         return outputs;
     }
 

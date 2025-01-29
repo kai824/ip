@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 class ToDo extends Task {
     public ToDo(String description) throws AdamException {
         super(description);
@@ -11,5 +13,10 @@ class ToDo extends Task {
     @Override
     public String log() {
         return "T | " + super.log();
+    }
+
+    @Override
+    public boolean isOn(LocalDate date) {
+        return false;
     }
 }

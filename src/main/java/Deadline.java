@@ -1,19 +1,28 @@
-class Deadline extends Task {
-    private String deadline;
+import java.time.LocalDate;
 
-    public Deadline(String description, String deadline) throws AdamException {
+class Deadline extends Task {
+    private LocalDate deadline;
+
+    public Deadline(String description, LocalDate deadline) throws AdamException {
         super(description);
         this.deadline = deadline;
     }
     
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), this.deadline);
+        return String.format("[D]%s (by: %s)", super.toString(),
+                this.deadline.format(super.OUTPUT_DATE_FORMAT));
     }
 
     @Override
     public String log() {
-        // Assuming that the deadline does not contain the delimiter "|" character
-        return String.format("D | %s | %s", super.log(), this.deadline);
+        // Format back into the input format
+        return String.format("D | %s | %s", super.log(),
+                this.deadline.format(super.DATE_FORMAT));
+    }
+
+    @Override
+    public boolean isOn(LocalDate date) {
+        return this.deadline.equals(date);
     }
 }
