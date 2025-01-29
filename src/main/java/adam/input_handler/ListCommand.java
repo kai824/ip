@@ -12,7 +12,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList manager, Ui ui) throws AdamException{
+    public void execute(TaskList manager, Ui ui) throws AdamException {
         ArrayList<String> outputs = manager.listAll();
         for (String output : outputs) {
             ui.outputText(output);

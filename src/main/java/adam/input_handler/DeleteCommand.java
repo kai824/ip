@@ -5,12 +5,10 @@ import adam.core.Ui;
 import adam.exceptions.AdamException;
 import adam.tasks.Task;
 
-import java.util.ArrayList;
-
 public class DeleteCommand extends Command {
     private int index;
 
-    DeleteCommand(String input) throws AdamException{
+    DeleteCommand(String input) throws AdamException {
         super();
         this.index = Integer.parseInt(input.split(" ")[1]) - 1;
     }
@@ -21,7 +19,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList manager, Ui ui) throws AdamException{
+    public void execute(TaskList manager, Ui ui) throws AdamException {
         try {
             Task task = manager.deleteTask(this.index);
             ui.outputText("OK, I've deleted this task:");

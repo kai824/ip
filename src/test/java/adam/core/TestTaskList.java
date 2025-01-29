@@ -25,9 +25,9 @@ public class TestTaskList {
             assertEquals(3, manager.listAll().size());
 
             ArrayList<String> outputs = manager.listAll();
-            assertEquals(outputs.get(0), "1. " + task1.toString());
-            assertEquals(outputs.get(1), "2. " + task2.toString());
-            assertEquals(outputs.get(2), "3. " + task3.toString());
+            assertEquals("1. " + task1.toString(), outputs.get(0));
+            assertEquals("2. " + task2.toString(), outputs.get(1));
+            assertEquals("3. " + task3.toString(), outputs.get(2));
         } catch (AdamException e) {
             assertEquals(1, 0);
         }
