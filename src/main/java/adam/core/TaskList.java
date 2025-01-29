@@ -5,9 +5,8 @@ import adam.tasks.Task;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class TaskList {
+public class TaskList{
     private ArrayList<Task> tasks;
-    private static final String LOG_PATH_FILE = "./data/adam_log.log";
     private Storage storage;
 
     TaskList(Storage store) {

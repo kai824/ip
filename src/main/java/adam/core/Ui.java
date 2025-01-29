@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Ui {
     private static final String INDENTATION = "    ";
-    private static final String CHATBOT_NAME = "    ";
     private Scanner scanner;
 
     Ui() {
@@ -27,6 +26,7 @@ public class Ui {
     }
 
     public void printSeparatingLine() {
-        System.out.println(INDENTATION + "____________________________________________________________");
+        System.out.println(
+                INDENTATION + "____________________________________________________________");
     }
 }

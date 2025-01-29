@@ -1,21 +1,19 @@
 package adam.input_handler;
 
-import adam.core.TaskList;
-import adam.core.Ui;
 import adam.exceptions.AdamException;
 import adam.exceptions.InvalidDate;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
 public class Parser {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    private static final DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
+    private static final DateTimeFormatter OUTPUT_DATE_FORMAT =
+            DateTimeFormatter.ofPattern("dd MMM yyyy");
 
     public static LocalDate parseInputDate(String date) throws AdamException {
-        try{
+        try {
             return LocalDate.parse(date, Parser.DATE_FORMAT);
         } catch (DateTimeParseException e) {
             throw new InvalidDate();
@@ -31,17 +29,17 @@ public class Parser {
     }
 
     public static Command parseInput(String input) throws AdamException {
-        if(ByeCommand.matches(input)) {
+        if (ByeCommand.isMatch(input)) {
             return new ByeCommand();
-        } else if(ListCommand.matches(input)) {
+        } else if (ListCommand.isMatch(input)) {
             return new ListCommand();
-        } else if(ListOnCommand.matches(input)) {
+        } else if (ListOnCommand.isMatch(input)) {
             return new ListOnCommand(input);
-        } else if(DoneCommand.matches(input)) {
+        } else if (DoneCommand.isMatch(input)) {
             return new DoneCommand(input);
-        } else if(UnmarkCommand.matches(input)) {
+        } else if (UnmarkCommand.isMatch(input)) {
             return new UnmarkCommand(input);
-        } else if(DeleteCommand.matches(input)) {
+        } else if (DeleteCommand.isMatch(input)) {
             return new DeleteCommand(input);
         } else if(FindCommand.matches(input)) {
             return new FindCommand(input);
