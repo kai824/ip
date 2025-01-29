@@ -20,4 +20,5 @@ unmark -1
 delete 0
 deadline /by 31-05-2025
 event missing argument /from 17-02-2025
+deadline misformatted date /by 351-456-13
 bye

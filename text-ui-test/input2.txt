@@ -9,4 +9,11 @@ delete 1
 list
 todo test adding another task
 list
+event test event /from 15-02-2026 /to 25-02-2026
+event test event2 /from 10-02-2026 /to 20-02-2026
+list
+deadline ddl1 /by 17-02-2026
+deadline ddl2 /by 18-02-2026
+list
+listOn 17-02-2026
 bye
