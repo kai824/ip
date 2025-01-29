@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Adam {
     private static TaskList manager;
@@ -15,7 +14,7 @@ public class Adam {
 
     private static void listAllOnDate(String date) {
         try {
-            LocalDate parsedDate = Task.parseDate(date);
+            LocalDate parsedDate = Parser.parseInputDate(date);
             ArrayList<String> outputs = manager.listAllOnDate(parsedDate);
             for (String output : outputs) {
                 ui.outputText(output);
@@ -75,11 +74,10 @@ public class Adam {
         ui.outputText("What can I do for you?");
         ui.printSeparatingLine();
 
-        Scanner sc = new Scanner(System.in);
         manager = new TaskList(new Storage());
 
         while(true) {
-            String userInput = sc.nextLine();
+            String userInput = ui.getUserInput();
             if (userInput.equals("bye")) {
                 break;
             }

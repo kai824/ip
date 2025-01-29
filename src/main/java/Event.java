@@ -13,16 +13,14 @@ class Event extends Task {
     @Override
     public String toString() {
         return String.format("[E]%s (from: %s to: %s)", super.toString(),
-                this.from.format(super.OUTPUT_DATE_FORMAT),
-                this.to.format(super.OUTPUT_DATE_FORMAT));
+                Parser.toOutputDate(this.from), Parser.toOutputDate(this.to));
     }
 
     @Override
     public String log() {
         // Format back into the input format
         return String.format("E | %s | %s | %s", super.log(), 
-                this.from.format(super.DATE_FORMAT),
-                this.to.format(super.DATE_FORMAT));
+                Parser.toLogDate(this.from), Parser.toLogDate(this.to));
     }
 
     @Override
