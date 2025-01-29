@@ -11,64 +11,64 @@
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
-      [D][ ] return book (by: Sunday)
+      [D][ ] return book (by: 15 Dec 2025)
     ____________________________________________________________
     ____________________________________________________________
      1. [T][ ] borrow book
-     2. [D][ ] return book (by: Sunday)
+     2. [D][ ] return book (by: 15 Dec 2025)
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
-      [E][ ] project meeting (from: Tues 2pm to: 4pm)
+      [E][ ] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      1. [T][ ] borrow book
-     2. [D][ ] return book (by: Sunday)
-     3. [E][ ] project meeting (from: Tues 2pm to: 4pm)
+     2. [D][ ] return book (by: 15 Dec 2025)
+     3. [E][ ] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      Nice! I've marked this task as done:
-       [D][X] return book (by: Sunday)
+       [D][X] return book (by: 15 Dec 2025)
     ____________________________________________________________
     ____________________________________________________________
      1. [T][ ] borrow book
-     2. [D][X] return book (by: Sunday)
-     3. [E][ ] project meeting (from: Tues 2pm to: 4pm)
+     2. [D][X] return book (by: 15 Dec 2025)
+     3. [E][ ] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      OK, I've marked this task as not done yet:
-       [D][ ] return book (by: Sunday)
+       [D][ ] return book (by: 15 Dec 2025)
     ____________________________________________________________
     ____________________________________________________________
      1. [T][ ] borrow book
-     2. [D][ ] return book (by: Sunday)
-     3. [E][ ] project meeting (from: Tues 2pm to: 4pm)
+     2. [D][ ] return book (by: 15 Dec 2025)
+     3. [E][ ] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      OK, I've deleted this task:
-       [D][ ] return book (by: Sunday)
+       [D][ ] return book (by: 15 Dec 2025)
     ____________________________________________________________
     ____________________________________________________________
      1. [T][ ] borrow book
-     2. [E][ ] project meeting (from: Tues 2pm to: 4pm)
+     2. [E][ ] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
-      [D][ ] another task (by: Monday)
+      [D][ ] another task (by: 31 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      1. [T][ ] borrow book
-     2. [E][ ] project meeting (from: Tues 2pm to: 4pm)
-     3. [D][ ] another task (by: Monday)
+     2. [E][ ] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
+     3. [D][ ] another task (by: 31 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      Nice! I've marked this task as done:
-       [D][X] another task (by: Monday)
+       [D][X] another task (by: 31 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      1. [T][ ] borrow book
-     2. [E][ ] project meeting (from: Tues 2pm to: 4pm)
-     3. [D][X] another task (by: Monday)
+     2. [E][ ] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
+     3. [D][X] another task (by: 31 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      Oh no! InvalidCommand: Command not recognised! Valid commands are: list, todo, deadline, event, bye
@@ -97,8 +97,8 @@
     ____________________________________________________________
     ____________________________________________________________
      1. [T][ ] borrow book
-     2. [E][ ] project meeting (from: Tues 2pm to: 4pm)
-     3. [D][ ] another task (by: Monday)
+     2. [E][ ] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
+     3. [D][ ] another task (by: 31 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      Nice! I've marked this task as done:
@@ -106,42 +106,42 @@
     ____________________________________________________________
     ____________________________________________________________
      1. [T][X] borrow book
-     2. [E][ ] project meeting (from: Tues 2pm to: 4pm)
-     3. [D][ ] another task (by: Monday)
+     2. [E][ ] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
+     3. [D][ ] another task (by: 31 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      Nice! I've marked this task as done:
-       [E][X] project meeting (from: Tues 2pm to: 4pm)
+       [E][X] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      1. [T][X] borrow book
-     2. [E][X] project meeting (from: Tues 2pm to: 4pm)
-     3. [D][ ] another task (by: Monday)
+     2. [E][X] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
+     3. [D][ ] another task (by: 31 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      OK, I've marked this task as not done yet:
-       [D][ ] another task (by: Monday)
+       [D][ ] another task (by: 31 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      1. [T][X] borrow book
-     2. [E][X] project meeting (from: Tues 2pm to: 4pm)
-     3. [D][ ] another task (by: Monday)
+     2. [E][X] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
+     3. [D][ ] another task (by: 31 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      OK, I've deleted this task:
        [T][X] borrow book
     ____________________________________________________________
     ____________________________________________________________
-     1. [E][X] project meeting (from: Tues 2pm to: 4pm)
-     2. [D][ ] another task (by: Monday)
+     1. [E][X] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
+     2. [D][ ] another task (by: 31 Mar 2025)
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
       [T][ ] test adding another task
     ____________________________________________________________
     ____________________________________________________________
-     1. [E][X] project meeting (from: Tues 2pm to: 4pm)
-     2. [D][ ] another task (by: Monday)
+     1. [E][X] recess week (from: 22 Feb 2025 to: 02 Mar 2025)
+     2. [D][ ] another task (by: 31 Mar 2025)
      3. [T][ ] test adding another task
     ____________________________________________________________
     ____________________________________________________________
