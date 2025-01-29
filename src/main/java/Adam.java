@@ -1,120 +1,36 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Adam {
-    private static TaskManager manager;
-    private static final String INDENTATION = "    ";
+    private static final String CHATBOT_NAME = "Adam";
+    private TaskList manager;
+    private Ui ui;
 
-    private static void printSeparatingLine() {
-        System.out.println(INDENTATION +
-                "____________________________________________________________");
+    Adam() {
+        this.ui = new Ui();
+        this.manager = new TaskList(new Storage());
     }
 
-    private static void outputText(String text) {
-        System.out.println(INDENTATION + " " + text);
-    }
+    public void run() {
+        ui.greet(Adam.CHATBOT_NAME);
 
-    private static void listAll() {
-        ArrayList<String> outputs = manager.listAll();
-        for (String output : outputs) {
-            outputText(output);
-        }
-    }
+        boolean hasExited = false;
+        while (!hasExited) {
+            String input = ui.getUserInput();
+            ui.printSeparatingLine();
+            try {
+                Command c = Parser.parseInput(input);
+                c.execute(manager, ui);
 
-    private static void listAllOnDate(String date) {
-        try {
-            LocalDate parsedDate = Task.parseDate(date);
-            ArrayList<String> outputs = manager.listAllOnDate(parsedDate);
-            for (String output : outputs) {
-                outputText(output);
+                hasExited = c.isExit();
+            } catch (AdamException e) {
+                ui.outputText("Oh no! " + e);
             }
-        } catch (AdamException e) {
-            outputText("Oh no! " + e);
-        }
-    }
-
-    private static void addNew(String text) {
-        try {
-            Task toAdd = Task.of(text);
-            manager.addTask(toAdd);
-
-            outputText("Got it. I've added this task:");
-            outputText(" " + toAdd);
-        } catch (AdamException e) {
-            outputText("Oh no! " + e);
-        }
-    }
-
-    private static void markDone(int index) {
-        try {
-            String taskText = manager.markDone(index - 1);
-            outputText("Nice! I've marked this task as done:");
-            outputText("  " + taskText);
-        } catch (IndexOutOfBoundsException e) {
-            outputText("Task index out of bounds!");
-        }
-    }
-
-    private static void unmarkDone(int index) {
-        try {
-            String taskText = manager.unmarkDone(index-1);
-            outputText("OK, I've marked this task as not done yet:");
-            outputText("  " + taskText);
-        } catch (IndexOutOfBoundsException e) {
-            outputText("Task index out of bounds!");
-        }
-    }
-
-    private static void deleteTask(int index) {
-        try {
-            Task task = manager.deleteTask(index - 1);
-            outputText("OK, I've deleted this task:");
-            outputText("  " + task);
-        } catch (IndexOutOfBoundsException e) {
-            outputText("Task index out of bounds!");
+            ui.printSeparatingLine();
         }
     }
 
     public static void main(String[] args) {
-        String CHATBOT_NAME = "Adam";
-        printSeparatingLine();
-        outputText("Hello! I'm " + CHATBOT_NAME);
-        outputText("What can I do for you?");
-        printSeparatingLine();
-
-        Scanner sc = new Scanner(System.in);
-        manager = new TaskManager();
-
-        while(true) {
-            String userInput = sc.nextLine();
-            if (userInput.equals("bye")) {
-                break;
-            }
-            
-            printSeparatingLine();
-            String[] inputParts = userInput.split(" ");
-            if (userInput.equals("list")){
-                listAll();
-            } else if(inputParts[0].equals("mark") && inputParts.length == 2) {
-                int index = Integer.parseInt(inputParts[1]);
-                markDone(index);
-            } else if(inputParts[0].equals("unmark") && inputParts.length == 2) {
-                int index = Integer.parseInt(inputParts[1]);
-                unmarkDone(index);
-            } else if(inputParts[0].equals("delete") && inputParts.length == 2) {
-                int index = Integer.parseInt(inputParts[1]);
-                deleteTask(index);
-            } else if(inputParts[0].equals("listOn") && inputParts.length == 2) {
-                listAllOnDate(inputParts[1]);
-            } else {
-                addNew(userInput);
-            }
-            printSeparatingLine();
-        }
-
-        printSeparatingLine();
-        outputText("Bye. Hope to see you again soon!");
-        printSeparatingLine();
+        new Adam().run();
     }
 }
