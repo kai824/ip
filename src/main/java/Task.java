@@ -58,6 +58,29 @@ abstract class Task {
         throw new InvalidCommand();
     }
 
+    public static Task fromLog(String logText) throws AdamException {
+        // | is a special character in regex, so we need to escape it
+        List<String> parts = List.of(logText.split(" \\| "));
+        Task task = null;
+        try {
+            if (parts.get(0).equals("T")) {
+                task = new ToDo(parts.get(2));
+            } else if(parts.get(0).equals("D")) {
+                task = new Deadline(parts.get(2), parts.get(3));
+            } else if(parts.get(0).equals("E")) {
+                task = new Event(parts.get(2), parts.get(3), parts.get(4));
+            } else {
+                throw new InvalidLogFile();
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidLogFile();
+        }
+        if (parts.get(1) == "true") {
+            task.markDone();
+        }
+        return task;
+    }
+
     public void markDone() {
         this.isDone = true;
     }

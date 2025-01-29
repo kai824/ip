@@ -1,7 +1,9 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 class TaskManager {
     private ArrayList<Task> tasks;
@@ -9,6 +11,21 @@ class TaskManager {
 
     TaskManager() {
         this.tasks = new ArrayList<>();
+        try {
+            File file = new File(this.LOG_PATH_FILE);
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                Task task = Task.fromLog(line);
+                this.tasks.add(task);
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            // No previous tasklist: do nothing
+        } catch (AdamException e) {
+            System.out.println("Error loading task list from file: " + e + ". Ignoring file.");
+            this.tasks = new ArrayList<>();
+        }
     }
 
     public ArrayList<String> listAll() {
