@@ -1,9 +1,13 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 abstract class Task {
     private boolean isDone;
     private String description;
+    protected static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    protected static final DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
     public Task(String description) throws AdamException {
         if (description.equals("")) {
@@ -43,6 +47,10 @@ abstract class Task {
         return results;
     }
 
+    private static LocalDate parseDate(String date) {
+        return LocalDate.parse(date, Task.DATE_FORMAT);
+    }
+
     public static Task of(String userInput) throws AdamException {
         List<String> parts = List.of(userInput.split(" "));
         if (parts.get(0).equals("todo")) {
@@ -50,10 +58,11 @@ abstract class Task {
             return new ToDo(split.get(0));
         } else if(parts.get(0).equals("deadline")) {
             List<String> split = splitDescription(parts, List.of("/by"));
-            return new Deadline(split.get(0), split.get(1));
+            return new Deadline(split.get(0), parseDate(split.get(1)));
         } else if(parts.get(0).equals("event")) {
             List<String> split = splitDescription(parts, List.of("/from", "/to"));
-            return new Event(split.get(0), split.get(1), split.get(2));
+            return new Event(split.get(0), parseDate(split.get(1)),
+                    parseDate(split.get(2)));
         }
         throw new InvalidCommand();
     }
@@ -66,9 +75,10 @@ abstract class Task {
             if (parts.get(0).equals("T")) {
                 task = new ToDo(parts.get(2));
             } else if(parts.get(0).equals("D")) {
-                task = new Deadline(parts.get(2), parts.get(3));
+                task = new Deadline(parts.get(2), parseDate(parts.get(3)));
             } else if(parts.get(0).equals("E")) {
-                task = new Event(parts.get(2), parts.get(3), parts.get(4));
+                task = new Event(parts.get(2), parseDate(parts.get(3)),
+                        parseDate(parts.get(4)));
             } else {
                 throw new InvalidLogFile();
             }
