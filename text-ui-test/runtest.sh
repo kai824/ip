@@ -23,10 +23,10 @@ fi
 rm ./data/adam_log.log
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin Adam < input.txt > ACTUAL.TXT
+java -classpath ../bin adam.core.Adam < input.txt > ACTUAL.TXT
 
 # run with a second input file, but this time with the log file
-java -classpath ../bin Adam < input2.txt >> ACTUAL.TXT
+java -classpath ../bin adam.core.Adam < input2.txt >> ACTUAL.TXT
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT

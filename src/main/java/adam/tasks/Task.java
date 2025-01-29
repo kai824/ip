@@ -101,6 +101,10 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public boolean contains(String query) {
+        return this.description.contains(query);
+    }
+
     @Override
     public String toString() {
         if (this.isDone) {
