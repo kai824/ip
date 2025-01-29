@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 class Parser {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -20,5 +21,24 @@ class Parser {
 
     public static String toLogDate(LocalDate date) {
         return date.format(Parser.DATE_FORMAT);
+    }
+
+    public static Command parseInput(String input) throws AdamException {
+        if(ByeCommand.matches(input)) {
+            return new ByeCommand();
+        } else if(ListCommand.matches(input)) {
+            return new ListCommand();
+        } else if(ListOnCommand.matches(input)) {
+            return new ListOnCommand(input);
+        } else if(DoneCommand.matches(input)) {
+            return new DoneCommand(input);
+        } else if(UnmarkCommand.matches(input)) {
+            return new UnmarkCommand(input);
+        } else if(DeleteCommand.matches(input)) {
+            return new DeleteCommand(input);
+        } else {
+            // throws AdamException if invalid input
+            return new AddCommand(input);
+        }
     }
 }
