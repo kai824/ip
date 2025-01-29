@@ -2,14 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class Task {
-    private boolean done;
+    private boolean isDone;
     private String description;
 
     public Task(String description) throws AdamException {
         if (description.equals("")) {
             throw new EmptyDescription();
         }
-        this.done = false;
+        this.isDone = false;
         this.description = description;
     }
 
@@ -59,16 +59,16 @@ abstract class Task {
     }
 
     public void markDone() {
-        this.done = true;
+        this.isDone = true;
     }
 
     public void unmarkDone() {
-        this.done = false;
+        this.isDone = false;
     }
 
     @Override
     public String toString() {
-        if (this.done) {
+        if (this.isDone) {
             return "[X] " + this.description;
         } else {
             return "[ ] " + this.description;
