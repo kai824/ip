@@ -1,11 +1,16 @@
 package adam.input_handler;
 
+import java.util.ArrayList;
+
 import adam.core.TaskList;
 import adam.core.Ui;
 import adam.exceptions.AdamException;
 
-import java.util.ArrayList;
-
+/**
+ * Represents a command to find tasks that match a given query.
+ * This command will search through the task list for all tasks
+ * that contain the specified query and print them to the user.
+ */
 public class FindCommand extends Command {
     private String query;
 

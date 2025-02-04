@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Checks if the input matches the command.
-     * 
+     *
      * @param input The input to check.
      * @return True if the input matches the command, false otherwise.
      */
@@ -30,7 +30,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Deletes the task from the task list and outputs the task to the user.
-     * 
+     *
      * @param manager The task list to add the task to.
      * @param ui The user interface to output to.
      * @throws AdamException If an error occurs while adding the task.

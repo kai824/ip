@@ -16,7 +16,7 @@ public class Ui {
 
     /**
      * Greets the user.
-     * 
+     *
      * @param name Name of the chatbot.
      */
     public void greet(String name) {
@@ -28,7 +28,7 @@ public class Ui {
 
     /**
      * Gets user input.
-     * 
+     *
      * @return The next line of user input.
      */
     public String getUserInput() {
@@ -37,7 +37,7 @@ public class Ui {
 
     /**
      * Outputs text to the user.
-     * 
+     *
      * @param text Text to output.
      */
     public void outputText(String text) {

@@ -1,11 +1,11 @@
 package adam.input_handler;
 
-import adam.exceptions.AdamException;
-import adam.exceptions.InvalidDate;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import adam.exceptions.AdamException;
+import adam.exceptions.InvalidDate;
 
 /**
  * Static methods to parse user input and create commands.
@@ -16,6 +16,13 @@ public class Parser {
     private static final DateTimeFormatter OUTPUT_DATE_FORMAT =
             DateTimeFormatter.ofPattern("dd MMM yyyy");
 
+    /**
+     * Parses the input string into a LocalDate object using the defined date format.
+     *
+     * @param date The input string representing the date, expected in the format "dd-MM-yyyy".
+     * @return A LocalDate object parsed from the input date string.
+     * @throws AdamException If the input string does not match the expected date format.
+     */
     public static LocalDate parseInputDate(String date) throws AdamException {
         try {
             return LocalDate.parse(date, Parser.DATE_FORMAT);
@@ -26,7 +33,7 @@ public class Parser {
 
     /**
      * Converts a LocalDate to a string in the format dd MMM yyyy.
-     * 
+     *
      * @param date The date to convert.
      * @return The date as a string in the format dd MMM yyyy.
      */
@@ -36,7 +43,7 @@ public class Parser {
 
     /**
      * Converts a LocalDate to a string in the format dd-MM-yyyy.
-     * 
+     *
      * @param date The date to convert.
      * @return The date as a string in the format dd-MM-yyyy.
      */
@@ -46,7 +53,7 @@ public class Parser {
 
     /**
      * Parses the input and returns the corresponding command.
-     * 
+     *
      * @param input The input to parse.
      * @return The corresponding command.
      * @throws AdamException If the input is invalid.
@@ -64,7 +71,7 @@ public class Parser {
             return new UnmarkCommand(input);
         } else if (DeleteCommand.isMatch(input)) {
             return new DeleteCommand(input);
-        } else if(FindCommand.matches(input)) {
+        } else if (FindCommand.matches(input)) {
             return new FindCommand(input);
         } else {
             // throws AdamException if invalid input

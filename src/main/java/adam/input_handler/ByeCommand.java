@@ -10,7 +10,7 @@ import adam.exceptions.AdamException;
 public class ByeCommand extends Command {
     /**
      * Checks if the input matches the command.
-     * 
+     *
      * @param input The input to check.
      * @return True if the input matches the command, false otherwise.
      */
@@ -20,7 +20,7 @@ public class ByeCommand extends Command {
 
     /**
      * Outputs a goodbye message to the user.
-     * 
+     *
      * @param manager The task list to add the task to.
      * @param ui The user interface to output to.
      * @throws AdamException If an error occurs while adding the task.
@@ -32,7 +32,7 @@ public class ByeCommand extends Command {
 
     /**
      * Checks if it is an exit command.
-     * 
+     *
      * @return True as Bye is an exit command.
      */
     @Override

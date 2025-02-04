@@ -1,11 +1,11 @@
 package adam.input_handler;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import adam.core.TaskList;
 import adam.core.Ui;
 import adam.exceptions.AdamException;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  * Represents a command to list all tasks on a specific date.
@@ -21,7 +21,7 @@ public class ListOnCommand extends Command {
 
     /**
      * Checks if the input matches the command.
-     * 
+     *
      * @param input The input to check.
      * @return True if the input matches the command, false otherwise.
      */
@@ -32,7 +32,7 @@ public class ListOnCommand extends Command {
 
     /**
      * Lists all tasks on the specified date.
-     * 
+     *
      * @param manager The task list to add the task to.
      * @param ui The user interface to output to.
      * @throws AdamException If an error occurs while adding the task.
