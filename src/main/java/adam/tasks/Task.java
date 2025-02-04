@@ -1,15 +1,15 @@
 package adam.tasks;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import adam.exceptions.AdamException;
 import adam.exceptions.EmptyDescription;
 import adam.exceptions.InvalidCommand;
 import adam.exceptions.InvalidLogFile;
 import adam.exceptions.MissingArgument;
-import adam.input_handler.Parser;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import adam.parser.Parser;
 
 /**
  * Represents a task that has to be done.
@@ -18,8 +18,14 @@ public abstract class Task {
     /** Represents if the task is done */
     private boolean isDone;
     /** String representing a description of the task */
-    private String description;
+    private final String description;
 
+    /**
+     * Constructs a Task object with a specified description.
+     *
+     * @param description The description of the task.
+     * @throws AdamException If the description is empty.
+     */
     public Task(String description) throws AdamException {
         if (description.equals("")) {
             throw new EmptyDescription();
@@ -30,21 +36,21 @@ public abstract class Task {
 
     /**
      * Splits the input into a description and a list of delimiters.
-     * 
+     *
      * @param input A list of input parts to be split.
      * @param delimiters A list of delimiters to split the input by.
      * @return A list of strings representing the split input.
      * @throws AdamException If a delimiter is missing.
      */
-    private static List<String> splitDescription(List<String> input, List<String> delimiters) 
-        throws AdamException {
+    private static List<String> splitDescription(List<String> input, List<String> delimiters)
+            throws AdamException {
         String cur = "";
         int delimiterIndex = 0;
         List<String> results = new ArrayList<String>();
 
         for (int i = 1; i < input.size(); i++) {
-            if (delimiterIndex < delimiters.size() &&
-              delimiters.get(delimiterIndex).equals(input.get(i))) {
+            if (delimiterIndex < delimiters.size()
+                    && delimiters.get(delimiterIndex).equals(input.get(i))) {
                 results.add(cur);
                 cur = "";
 
@@ -68,7 +74,7 @@ public abstract class Task {
 
     /**
      * Creates a task from user input.
-     * 
+     *
      * @param userInput String representing the user input.
      * @return A task object representing the user input.
      * @throws AdamException If the user input is invalid.
@@ -78,10 +84,10 @@ public abstract class Task {
         if (parts.get(0).equals("todo")) {
             List<String> split = splitDescription(parts, List.of());
             return new ToDo(split.get(0));
-        } else if(parts.get(0).equals("deadline")) {
+        } else if (parts.get(0).equals("deadline")) {
             List<String> split = splitDescription(parts, List.of("/by"));
             return new Deadline(split.get(0), Parser.parseInputDate(split.get(1)));
-        } else if(parts.get(0).equals("event")) {
+        } else if (parts.get(0).equals("event")) {
             List<String> split = splitDescription(parts, List.of("/from", "/to"));
             return new Event(split.get(0), Parser.parseInputDate(split.get(1)),
                     Parser.parseInputDate(split.get(2)));
@@ -91,7 +97,7 @@ public abstract class Task {
 
     /**
      * Creates a task from a log file.
-     * 
+     *
      * @param logText The log text to create the task from.
      * @return A task object representing the log text.
      * @throws AdamException If the log text is invalid.
@@ -103,9 +109,9 @@ public abstract class Task {
         try {
             if (parts.get(0).equals("T")) {
                 task = new ToDo(parts.get(2));
-            } else if(parts.get(0).equals("D")) {
+            } else if (parts.get(0).equals("D")) {
                 task = new Deadline(parts.get(2), Parser.parseInputDate(parts.get(3)));
-            } else if(parts.get(0).equals("E")) {
+            } else if (parts.get(0).equals("E")) {
                 task = new Event(parts.get(2), Parser.parseInputDate(parts.get(3)),
                         Parser.parseInputDate(parts.get(4)));
             } else {
@@ -136,7 +142,7 @@ public abstract class Task {
 
     /**
      * Checks if the task contains a query string
-     * 
+     *
      * @param query The query string to check for.
      * @return True if the task contains the query string, false otherwise.
      */
@@ -155,12 +161,12 @@ public abstract class Task {
 
     /**
      * Gets the description of the task for logging.
-     * 
+     *
      * @return the description to be logged.
      */
     public String log() {
         return this.isDone + " | " + this.description;
     }
 
-    abstract public boolean isOn(LocalDate date);
+    public abstract boolean isOn(LocalDate date);
 }

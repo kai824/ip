@@ -1,35 +1,36 @@
-package adam.input_handler;
+package adam.parser;
 
 import adam.core.TaskList;
 import adam.core.Ui;
 import adam.exceptions.AdamException;
+import adam.tasks.Task;
 
 /**
- * Represents a command to mark a task as done.
+ * Represents a command to delete a task from the task list.
  */
-public class DoneCommand extends Command {
-    /** The index of the task to mark as done */
+public class DeleteCommand extends Command {
+    /** The index of the task to delete */
     private int index;
 
-    DoneCommand(String input) throws AdamException {
+    DeleteCommand(String input) throws AdamException {
         super();
         this.index = Integer.parseInt(input.split(" ")[1]) - 1;
     }
 
     /**
      * Checks if the input matches the command.
-     * 
+     *
      * @param input The input to check.
      * @return True if the input matches the command, false otherwise.
      */
     public static boolean isMatch(String input) {
         String[] inputParts = input.split(" ");
-        return inputParts[0].equals("mark") && inputParts.length == 2;
+        return inputParts[0].equals("delete") && inputParts.length == 2;
     }
 
     /**
-     * Marks the task as done and outputs the task to the user.
-     * 
+     * Deletes the task from the task list and outputs the task to the user.
+     *
      * @param manager The task list to add the task to.
      * @param ui The user interface to output to.
      * @throws AdamException If an error occurs while adding the task.
@@ -37,9 +38,9 @@ public class DoneCommand extends Command {
     @Override
     public void execute(TaskList manager, Ui ui) throws AdamException {
         try {
-            String taskText = manager.markDone(this.index);
-            ui.outputText("Nice! I've marked this task as done:");
-            ui.outputText("  " + taskText);
+            Task task = manager.deleteTask(this.index);
+            ui.outputText("OK, I've deleted this task:");
+            ui.outputText("  " + task);
         } catch (IndexOutOfBoundsException e) {
             ui.outputText("Task index out of bounds!");
         }

@@ -1,25 +1,32 @@
 package adam.tasks;
 
-import adam.exceptions.AdamException;
-import adam.input_handler.Parser;
-
 import java.time.LocalDate;
+
+import adam.exceptions.AdamException;
+import adam.parser.Parser;
 
 /**
  * Represents a task with a deadline.
  */
 public class Deadline extends Task {
     /** The deadline of the task. */
-    private LocalDate deadline;
+    private final LocalDate deadline;
 
+    /**
+     * Constructs a Deadline object with a specified description and deadline.
+     *
+     * @param description The description of the task.
+     * @param deadline The deadline date for the task.
+     * @throws AdamException If the description is empty or invalid.
+     */
     public Deadline(String description, LocalDate deadline) throws AdamException {
         super(description);
         this.deadline = deadline;
     }
-    
+
     /**
      * Gets the deadline of the task as a String.
-     * 
+     *
      * @return The deadline of the task.
      */
     @Override
@@ -40,7 +47,7 @@ public class Deadline extends Task {
 
     /**
      * Checks if the task is due on the specified date.
-     * 
+     *
      * @param date The date to check against.
      * @return True if the task is due on the specified date.
      */

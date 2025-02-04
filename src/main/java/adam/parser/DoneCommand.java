@@ -1,35 +1,35 @@
-package adam.input_handler;
+package adam.parser;
 
 import adam.core.TaskList;
 import adam.core.Ui;
 import adam.exceptions.AdamException;
 
 /**
- * Represents a command to unmark a task as done.
+ * Represents a command to mark a task as done.
  */
-public class UnmarkCommand extends Command {
-    /** The index of the task to unmark */
+public class DoneCommand extends Command {
+    /** The index of the task to mark as done */
     private int index;
 
-    UnmarkCommand(String input) throws AdamException {
+    DoneCommand(String input) throws AdamException {
         super();
         this.index = Integer.parseInt(input.split(" ")[1]) - 1;
     }
 
     /**
      * Checks if the input matches the command.
-     * 
+     *
      * @param input The input to check.
      * @return True if the input matches the command, false otherwise.
      */
     public static boolean isMatch(String input) {
         String[] inputParts = input.split(" ");
-        return inputParts[0].equals("unmark") && inputParts.length == 2;
+        return inputParts[0].equals("mark") && inputParts.length == 2;
     }
 
     /**
-     * Unmarks the task as done and outputs the task to the user.
-     * 
+     * Marks the task as done and outputs the task to the user.
+     *
      * @param manager The task list to add the task to.
      * @param ui The user interface to output to.
      * @throws AdamException If an error occurs while adding the task.
@@ -37,8 +37,8 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList manager, Ui ui) throws AdamException {
         try {
-            String taskText = manager.unmarkDone(this.index);
-            ui.outputText("OK, I've marked this task as not done yet:");
+            String taskText = manager.markDone(this.index);
+            ui.outputText("Nice! I've marked this task as done:");
             ui.outputText("  " + taskText);
         } catch (IndexOutOfBoundsException e) {
             ui.outputText("Task index out of bounds!");

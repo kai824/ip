@@ -1,13 +1,14 @@
 package adam.core;
 
-import adam.exceptions.AdamException;
-import adam.tasks.Task;
-
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+import adam.exceptions.AdamException;
+import adam.tasks.Task;
 
 /**
  * Test class for TaskList.
@@ -102,7 +103,6 @@ class StubStorage extends Storage {
 
     @Override
     public void saveLog(ArrayList<Task> tasks) {
-        return;
     }
 }
 
@@ -110,7 +110,8 @@ class StubStorage extends Storage {
  * Stub class for Task.
  */
 class StubTask extends Task {
-    private String description;
+    private final String description;
+
     StubTask(String description) throws AdamException {
         super(description);
         this.description = description;
@@ -123,9 +124,6 @@ class StubTask extends Task {
 
     @Override
     public boolean isOn(LocalDate date) {
-        if (this.description == "On Date") {
-            return true;
-        }
-        return false;
+        return "On Date".equals(this.description);
     }
 }

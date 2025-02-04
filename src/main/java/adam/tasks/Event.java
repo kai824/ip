@@ -1,9 +1,9 @@
 package adam.tasks;
 
-import adam.exceptions.AdamException;
-import adam.input_handler.Parser;
-
 import java.time.LocalDate;
+
+import adam.exceptions.AdamException;
+import adam.parser.Parser;
 
 /**
  * Represents a task that occurs over a period of time.
@@ -14,15 +14,23 @@ public class Event extends Task {
     /** The end date of the event. */
     private LocalDate to;
 
+    /**
+     * Creates an Event with a description, start date, and end date.
+     *
+     * @param description The description of the event.
+     * @param from The start date of the event.
+     * @param to The end date of the event.
+     * @throws AdamException If the description is empty.
+     */
     public Event(String description, LocalDate from, LocalDate to) throws AdamException {
         super(description);
         this.from = from;
         this.to = to;
     }
-    
+
     /**
      * Gets the event as a String.
-     * 
+     *
      * @return The event as a String.
      */
     @Override
@@ -37,20 +45,20 @@ public class Event extends Task {
     @Override
     public String log() {
         // Format back into the input format
-        return String.format("E | %s | %s | %s", super.log(), 
+        return String.format("E | %s | %s | %s", super.log(),
                 Parser.toLogDate(this.from), Parser.toLogDate(this.to));
     }
 
     /**
      * Checks if the event occurs on the specified date.
-     * 
+     *
      * @param date The date to check against.
      * @return True if the event occurs on the specified date.
      */
     @Override
     public boolean isOn(LocalDate date) {
         // this.from <= date <= this.to
-        return (this.from.isBefore(date) || this.from.equals(date)) &&
-                (this.to.isAfter(date) || this.to.equals(date));
+        return (this.from.isBefore(date) || this.from.equals(date))
+                && (this.to.isAfter(date) || this.to.equals(date));
     }
 }

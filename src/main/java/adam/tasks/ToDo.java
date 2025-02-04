@@ -1,8 +1,8 @@
 package adam.tasks;
 
-import adam.exceptions.AdamException;
-
 import java.time.LocalDate;
+
+import adam.exceptions.AdamException;
 
 /**
  * Represents a task that has to be done.
@@ -11,7 +11,7 @@ public class ToDo extends Task {
     public ToDo(String description) throws AdamException {
         super(description);
     }
-    
+
     /**
      * Gets the task as a String.
      */
@@ -30,7 +30,7 @@ public class ToDo extends Task {
 
     /**
      * Checks if it is on the specified date.
-     * 
+     *
      * @param date The date to check against.
      * @return False, as a ToDo task has no due date.
      */

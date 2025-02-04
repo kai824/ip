@@ -1,8 +1,8 @@
 package adam.core;
 
-import adam.input_handler.Command;
-import adam.input_handler.Parser;
 import adam.exceptions.AdamException;
+import adam.parser.Command;
+import adam.parser.Parser;
 
 /**
  * Represents the chatbot Adam.
@@ -46,7 +46,7 @@ public class Adam {
 
     /**
      * Main entry-point for the java.adam.Duke application.
-     * 
+     *
      * @param args Unused.
      */
     public static void main(String[] args) {

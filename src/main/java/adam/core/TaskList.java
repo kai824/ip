@@ -1,14 +1,14 @@
 package adam.core;
 
-import adam.tasks.Task;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import adam.tasks.Task;
 
 /**
  * Represents the list of tasks.
  */
-public class TaskList{
+public class TaskList {
     /** List of tasks */
     private ArrayList<Task> tasks;
 
@@ -22,7 +22,7 @@ public class TaskList{
 
     /**
      * Lists all tasks in the task list.
-     * 
+     *
      * @return ArrayList of strings representing tasks
      */
     public ArrayList<String> listAll() {
@@ -30,13 +30,13 @@ public class TaskList{
         for (int i = 0; i < this.tasks.size(); i++) {
             outputs.add(String.format("%d. %s", i + 1, this.tasks.get(i)));
         }
-        
+
         return outputs;
     }
 
     /**
      * Lists all tasks on a given date.
-     * 
+     *
      * @param date The date to filter tasks by.
      * @return ArrayList of strings representing tasks that occur on the date
      */
@@ -54,7 +54,7 @@ public class TaskList{
 
     /**
      * Lists all tasks that match a query.
-     * 
+     *
      * @param query The query to match tasks against.
      * @return ArrayList of strings representing tasks that match the query.
      */
@@ -72,7 +72,7 @@ public class TaskList{
 
     /**
      * Adds a task to the task list.
-     * 
+     *
      * @param task
      */
     public void addTask(Task task) {
@@ -82,7 +82,7 @@ public class TaskList{
 
     /**
      * Deletes a task from the task list.
-     * 
+     *
      * @param index The index of the task to delete.
      * @return The deleted task.
      */
@@ -96,7 +96,7 @@ public class TaskList{
 
     /**
      * Marks a task as done.
-     * 
+     *
      * @param index The index of the task to mark as done.
      * @return A String representing the task that was marked.
      */
@@ -111,7 +111,7 @@ public class TaskList{
 
     /**
      * Unmarks a task as done.
-     * 
+     *
      * @param index The index of the task to unmark as done.
      * @return a String representing the task that was unmarked
      */

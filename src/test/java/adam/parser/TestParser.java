@@ -1,9 +1,10 @@
-package adam.input_handler;
+package adam.parser;
 
-import adam.exceptions.AdamException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import adam.exceptions.AdamException;
 
 /**
  * Test class for Parser.
@@ -16,7 +17,7 @@ public class TestParser {
     public void testParseInputDate() {
         try {
             assertEquals("2021-12-31", Parser.parseInputDate("31-12-2021").toString());
-        } catch (Exception e) {
+        } catch (AdamException e) {
             assertEquals(1, 0);
         }
     }
@@ -52,8 +53,10 @@ public class TestParser {
     public void testParseInput() {
         try {
             assertEquals(AddCommand.class, Parser.parseInput("todo test").getClass());
-            assertEquals(AddCommand.class, Parser.parseInput("deadline test /by 31-12-2021").getClass());
-            assertEquals(AddCommand.class, Parser.parseInput("event test /from 15-12-2021 /to 25-12-2021").getClass());
+            assertEquals(AddCommand.class,
+                    Parser.parseInput("deadline test /by 31-12-2021").getClass());
+            assertEquals(AddCommand.class,
+                    Parser.parseInput("event test /from 15-12-2021 /to 25-12-2021").getClass());
             assertEquals(ListCommand.class, Parser.parseInput("list").getClass());
             assertEquals(ListOnCommand.class, Parser.parseInput("listOn 31-12-2021").getClass());
             assertEquals(DoneCommand.class, Parser.parseInput("mark 1").getClass());
