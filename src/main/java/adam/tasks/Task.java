@@ -9,7 +9,7 @@ import adam.exceptions.EmptyDescription;
 import adam.exceptions.InvalidCommand;
 import adam.exceptions.InvalidLogFile;
 import adam.exceptions.MissingArgument;
-import adam.input_handler.Parser;
+import adam.parser.Parser;
 
 /**
  * Represents a task that has to be done.

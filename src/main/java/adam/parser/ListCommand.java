@@ -1,13 +1,15 @@
-package adam.input_handler;
+package adam.parser;
+
+import java.util.ArrayList;
 
 import adam.core.TaskList;
 import adam.core.Ui;
 import adam.exceptions.AdamException;
 
 /**
- * Represents a command to exit the program.
+ * Represents a command to list all tasks in the task list.
  */
-public class ByeCommand extends Command {
+public class ListCommand extends Command {
     /**
      * Checks if the input matches the command.
      *
@@ -15,11 +17,11 @@ public class ByeCommand extends Command {
      * @return True if the input matches the command, false otherwise.
      */
     public static boolean isMatch(String input) {
-        return input.equals("bye");
+        return input.equals("list");
     }
 
     /**
-     * Outputs a goodbye message to the user.
+     * Lists all tasks in the task list.
      *
      * @param manager The task list to add the task to.
      * @param ui The user interface to output to.
@@ -27,16 +29,9 @@ public class ByeCommand extends Command {
      */
     @Override
     public void execute(TaskList manager, Ui ui) throws AdamException {
-        ui.outputText("Bye. Hope to see you again soon!");
-    }
-
-    /**
-     * Checks if it is an exit command.
-     *
-     * @return True as Bye is an exit command.
-     */
-    @Override
-    public boolean isExit() {
-        return true;
+        ArrayList<String> outputs = manager.listAll();
+        for (String output : outputs) {
+            ui.outputText(output);
+        }
     }
 }

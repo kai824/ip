@@ -1,4 +1,4 @@
-package adam.input_handler;
+package adam.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

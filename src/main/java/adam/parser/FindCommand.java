@@ -1,4 +1,4 @@
-package adam.input_handler;
+package adam.parser;
 
 import java.util.ArrayList;
 

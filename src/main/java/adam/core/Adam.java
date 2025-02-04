@@ -1,8 +1,8 @@
 package adam.core;
 
 import adam.exceptions.AdamException;
-import adam.input_handler.Command;
-import adam.input_handler.Parser;
+import adam.parser.Command;
+import adam.parser.Parser;
 
 /**
  * Represents the chatbot Adam.

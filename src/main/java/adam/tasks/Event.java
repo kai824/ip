@@ -3,7 +3,7 @@ package adam.tasks;
 import java.time.LocalDate;
 
 import adam.exceptions.AdamException;
-import adam.input_handler.Parser;
+import adam.parser.Parser;
 
 /**
  * Represents a task that occurs over a period of time.

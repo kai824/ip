@@ -1,4 +1,4 @@
-package adam.input_handler;
+package adam.parser;
 
 import adam.core.TaskList;
 import adam.core.Ui;
