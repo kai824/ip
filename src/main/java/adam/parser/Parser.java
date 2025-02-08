@@ -4,6 +4,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import adam.command.AddCommand;
+import adam.command.ByeCommand;
+import adam.command.Command;
+import adam.command.DeleteCommand;
+import adam.command.DoneCommand;
+import adam.command.FindCommand;
+import adam.command.ListCommand;
+import adam.command.ListOnCommand;
+import adam.command.UnmarkCommand;
 import adam.exceptions.AdamException;
 import adam.exceptions.InvalidDate;
 
@@ -40,7 +49,7 @@ public class Parser {
      * @param date The date to convert.
      * @return The date as a string in the format dd MMM yyyy.
      */
-    public static String toOutputDate(LocalDate date) {
+    public static String formatOutputDate(LocalDate date) {
         return date.format(Parser.OUTPUT_DATE_FORMAT);
     }
 
@@ -50,7 +59,7 @@ public class Parser {
      * @param date The date to convert.
      * @return The date as a string in the format dd-MM-yyyy.
      */
-    public static String toLogDate(LocalDate date) {
+    public static String formatLogDate(LocalDate date) {
         return date.format(Parser.DATE_FORMAT);
     }
 

@@ -4,6 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import adam.command.AddCommand;
+import adam.command.ByeCommand;
+import adam.command.DeleteCommand;
+import adam.command.DoneCommand;
+import adam.command.ListCommand;
+import adam.command.ListOnCommand;
+import adam.command.UnmarkCommand;
 import adam.exceptions.AdamException;
 
 /**
@@ -23,24 +30,24 @@ public class TestParser {
     }
 
     /**
-     * Tests the toOutputDate method.
+     * Tests the formatOutputDate method.
      */
     @Test
-    public void testToOutputDate() {
+    public void testFormatOutputDate() {
         try {
-            assertEquals("31 Dec 2021", Parser.toOutputDate(Parser.parseInputDate("31-12-2021")));
+            assertEquals("31 Dec 2021", Parser.formatOutputDate(Parser.parseInputDate("31-12-2021")));
         } catch (Exception e) {
             assertEquals(1, 0);
         }
     }
 
     /**
-     * Tests the toLogDate method.
+     * Tests the formatLogDate method.
      */
     @Test
-    public void testToLogDate() {
+    public void testFormatLogDate() {
         try {
-            assertEquals("31-12-2021", Parser.toLogDate(Parser.parseInputDate("31-12-2021")));
+            assertEquals("31-12-2021", Parser.formatLogDate(Parser.parseInputDate("31-12-2021")));
         } catch (Exception e) {
             assertEquals(1, 0);
         }
