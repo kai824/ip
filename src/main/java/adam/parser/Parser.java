@@ -71,7 +71,7 @@ public class Parser {
             return new UnmarkCommand(input);
         } else if (DeleteCommand.isMatch(input)) {
             return new DeleteCommand(input);
-        } else if (FindCommand.matches(input)) {
+        } else if (FindCommand.isMatch(input)) {
             return new FindCommand(input);
         } else {
             // throws AdamException if invalid input

@@ -1,7 +1,6 @@
 package adam.parser;
 
 import adam.core.TaskList;
-import adam.core.Ui;
 import adam.exceptions.AdamException;
 import adam.tasks.Task;
 
@@ -12,7 +11,13 @@ public class DeleteCommand extends Command {
     /** The index of the task to delete */
     private int index;
 
-    DeleteCommand(String input) throws AdamException {
+    /**
+     * Constructor for a delete command.
+     *
+     * @param input The input to the command.
+     * @throws AdamException If an error occurs while creating the command.
+     */
+    public DeleteCommand(String input) throws AdamException {
         super();
         this.index = Integer.parseInt(input.split(" ")[1]) - 1;
     }
@@ -32,17 +37,16 @@ public class DeleteCommand extends Command {
      * Deletes the task from the task list and outputs the task to the user.
      *
      * @param manager The task list to add the task to.
-     * @param ui The user interface to output to.
+     * @return The output to show to the user.
      * @throws AdamException If an error occurs while adding the task.
      */
     @Override
-    public void execute(TaskList manager, Ui ui) throws AdamException {
+    public String execute(TaskList manager) throws AdamException {
         try {
             Task task = manager.deleteTask(this.index);
-            ui.outputText("OK, I've deleted this task:");
-            ui.outputText("  " + task);
+            return "OK, I've deleted this task:\n " + task;
         } catch (IndexOutOfBoundsException e) {
-            ui.outputText("Task index out of bounds!");
+            return "Task index out of bounds!";
         }
     }
 }

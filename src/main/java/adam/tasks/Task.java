@@ -120,7 +120,7 @@ public abstract class Task {
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidLogFile();
         }
-        if (parts.get(1) == "true") {
+        if (parts.get(1).equals("true")) {
             task.markDone();
         }
         return task;

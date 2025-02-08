@@ -14,42 +14,27 @@ public class Adam {
     /** An instance of TaskList handling the information of current tasks */
     private TaskList manager;
 
-    /** An instance of Ui handling user interaction */
-    private Ui ui;
-
-    Adam() {
-        this.ui = new Ui();
+    /**
+     * Constructor for adam.core.Adam.
+     *
+     * Initializes the chatbot with a new Ui and a new TaskList.
+     */
+    public Adam() {
         this.manager = new TaskList(new Storage());
     }
 
     /**
-     * Runs the chatbot.
-     */
-    public void run() {
-        ui.greet(Adam.CHATBOT_NAME);
-
-        boolean hasExited = false;
-        while (!hasExited) {
-            String input = ui.getUserInput();
-            ui.printSeparatingLine();
-            try {
-                Command c = Parser.parseInput(input);
-                c.execute(manager, ui);
-
-                hasExited = c.isExit();
-            } catch (AdamException e) {
-                ui.outputText("Oh no! " + e);
-            }
-            ui.printSeparatingLine();
-        }
-    }
-
-    /**
-     * Main entry-point for the java.adam.Duke application.
+     * Gets the response from the chatbot.
      *
-     * @param args Unused.
+     * @param input User input.
+     * @return Response from the chatbot.
      */
-    public static void main(String[] args) {
-        new Adam().run();
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parseInput(input);
+            return c.execute(manager);
+        } catch (AdamException e) {
+            return "Oh no! " + e;
+        }
     }
 }

@@ -20,7 +20,12 @@ public class Storage {
     /** Path of log file */
     private final String logPathFile;
 
-    Storage(String path) {
+    /**
+     * Constructor for Storage.
+     *
+     * @param path Path of log file
+     */
+    public Storage(String path) {
         this.logPathFile = path;
     }
 
