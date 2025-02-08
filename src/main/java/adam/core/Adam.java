@@ -43,6 +43,7 @@ public class Adam {
             Command c = Parser.parseInput(input);
             return c.execute(manager);
         } catch (AdamException e) {
+            assert !e.getMessage().isEmpty() : "Exception should have a message";
             return "Oh no! " + e;
         }
     }

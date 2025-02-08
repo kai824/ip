@@ -120,6 +120,8 @@ public abstract class Task {
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidLogFile();
         }
+        assert (parts.get(1).equals("true") || parts.get(1).equals("false"))
+                : "isDone should be true or false";
         if (parts.get(1).equals("true")) {
             task.markDone();
         }
