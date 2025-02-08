@@ -48,7 +48,6 @@ test {
 }
 
 application {
-    // mainClass.set("adam.core.Adam")
     mainClass.set("adam.javafx.Launcher")
 }
 
@@ -59,4 +58,5 @@ shadowJar {
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }
