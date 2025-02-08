@@ -17,6 +17,7 @@ import adam.command.ListOnCommand;
 import adam.command.UnmarkCommand;
 import adam.exceptions.AdamException;
 import adam.exceptions.InvalidDate;
+import adam.exceptions.InvalidDuration;
 
 /**
  * Static methods to parse user input and create commands.
@@ -82,11 +83,11 @@ public class Parser {
                 } else if (part.endsWith("m")) {
                     result = result.plusMinutes(Long.parseLong(part.substring(0, part.length() - 1)));
                 } else {
-                    throw new AdamException("Invalid duration format");
+                    throw new InvalidDuration();
                 }
             }
         } catch (NumberFormatException e) {
-            throw new AdamException("Invalid duration format");
+            throw new InvalidDuration();
         }
         return result;
     }
@@ -97,7 +98,7 @@ public class Parser {
      * @param duration The duration to convert.
      * @return The duration as a string in the format "xh ym".
      */
-    public static String formatduration(Duration duration) {
+    public static String formatDuration(Duration duration) {
         long hours = duration.toHours();
         long mins = duration.toMinutes() % 60;
         if (mins == 0) {

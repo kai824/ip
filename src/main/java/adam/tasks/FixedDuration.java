@@ -29,7 +29,7 @@ public class FixedDuration extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[F] %s (Duration: %s)", super.toString(), Parser.formatduration(duration));
+        return String.format("[F] %s (Duration: %s)", super.toString(), Parser.formatDuration(duration));
     }
 
     /**
@@ -37,7 +37,7 @@ public class FixedDuration extends Task {
      */
     @Override
     public String toLogString() {
-        return "F | " + super.toLogString() + " | " + duration.toMinutes();
+        return "F | " + super.toLogString() + " | " + Parser.formatDuration(duration);
     }
 
     /**
