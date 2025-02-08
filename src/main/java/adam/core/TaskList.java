@@ -15,7 +15,12 @@ public class TaskList {
     /** An instance of Storage to handle saving task list to file */
     private Storage storage;
 
-    TaskList(Storage store) {
+    /**
+     * Constructor for TaskList.
+     *
+     * @param store An instance of Storage to handle saving task list to file.
+     */
+    public TaskList(Storage store) {
         this.storage = store;
         this.tasks = this.storage.loadLog();
     }

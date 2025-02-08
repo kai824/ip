@@ -1,7 +1,6 @@
 package adam.parser;
 
 import adam.core.TaskList;
-import adam.core.Ui;
 import adam.exceptions.AdamException;
 
 /**
@@ -11,7 +10,13 @@ public class UnmarkCommand extends Command {
     /** The index of the task to unmark */
     private int index;
 
-    UnmarkCommand(String input) throws AdamException {
+    /**
+     * Constructor for UnmarkCommand.
+     *
+     * @param input User input.
+     * @throws AdamException If an error occurs while parsing the input.
+     */
+    public UnmarkCommand(String input) throws AdamException {
         super();
         this.index = Integer.parseInt(input.split(" ")[1]) - 1;
     }
@@ -31,17 +36,16 @@ public class UnmarkCommand extends Command {
      * Unmarks the task as done and outputs the task to the user.
      *
      * @param manager The task list to add the task to.
-     * @param ui The user interface to output to.
+     * @return The output to show to the user.
      * @throws AdamException If an error occurs while adding the task.
      */
     @Override
-    public void execute(TaskList manager, Ui ui) throws AdamException {
+    public String execute(TaskList manager) throws AdamException {
         try {
             String taskText = manager.unmarkDone(this.index);
-            ui.outputText("OK, I've marked this task as not done yet:");
-            ui.outputText("  " + taskText);
+            return "OK, I've marked this task as not done yet:\n  " + taskText;
         } catch (IndexOutOfBoundsException e) {
-            ui.outputText("Task index out of bounds!");
+            return "Task index out of bounds!";
         }
     }
 }

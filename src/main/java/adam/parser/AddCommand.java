@@ -1,7 +1,6 @@
 package adam.parser;
 
 import adam.core.TaskList;
-import adam.core.Ui;
 import adam.exceptions.AdamException;
 import adam.tasks.Task;
 
@@ -12,7 +11,13 @@ public class AddCommand extends Command {
     /** The new task to add */
     private Task newTask;
 
-    AddCommand(String input) throws AdamException {
+    /**
+     * Constructor for an AddCommand.
+     *
+     * @param input The input to create the task from.
+     * @throws AdamException If an error occurs while creating the task.
+     */
+    public AddCommand(String input) throws AdamException {
         super();
         this.newTask = Task.of(input);
     }
@@ -36,13 +41,12 @@ public class AddCommand extends Command {
      * Adds the new task to the task list and outputs the task to the user.
      *
      * @param manager The task list to add the task to.
-     * @param ui The user interface to output to.
+     * @return The output to show to the user.
      * @throws AdamException If an error occurs while adding the task.
      */
     @Override
-    public void execute(TaskList manager, Ui ui) throws AdamException {
+    public String execute(TaskList manager) throws AdamException {
         manager.addTask(this.newTask);
-        ui.outputText("Got it. I've added this task:");
-        ui.outputText(" " + this.newTask);
+        return "Got it. I've added this task:\n " + this.newTask;
     }
 }

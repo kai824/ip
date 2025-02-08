@@ -3,7 +3,6 @@ package adam.parser;
 import java.util.ArrayList;
 
 import adam.core.TaskList;
-import adam.core.Ui;
 import adam.exceptions.AdamException;
 
 /**
@@ -14,20 +13,40 @@ import adam.exceptions.AdamException;
 public class FindCommand extends Command {
     private String query;
 
-    FindCommand(String input) {
+    /**
+     * Constructor for FindCommand.
+     *
+     * @param input User input.
+     */
+    public FindCommand(String input) {
         super();
         this.query = input.substring(5);
     }
 
-    public static boolean matches(String input) {
+    /**
+     * Checks if the input matches the command.
+     *
+     * @param input The input to check.
+     * @return True if the input matches the command, false otherwise.
+     */
+    public static boolean isMatch(String input) {
         return input.startsWith("find ");
     }
 
+    /**
+     * Finds all tasks that match the query and outputs them to the user.
+     *
+     * @param manager The task list to search through.
+     * @return The output to show to the user.
+     * @throws AdamException If an error occurs while searching for tasks.
+     */
     @Override
-    public void execute(TaskList manager, Ui ui) throws AdamException {
+    public String execute(TaskList manager) throws AdamException {
         ArrayList<String> outputs = manager.listMatches(this.query);
+        StringBuilder sb = new StringBuilder();
         for (String output : outputs) {
-            ui.outputText(output);
+            sb.append(output).append("\n");
         }
+        return sb.toString();
     }
 }

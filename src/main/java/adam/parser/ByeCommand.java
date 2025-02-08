@@ -1,7 +1,6 @@
 package adam.parser;
 
 import adam.core.TaskList;
-import adam.core.Ui;
 import adam.exceptions.AdamException;
 
 /**
@@ -22,12 +21,12 @@ public class ByeCommand extends Command {
      * Outputs a goodbye message to the user.
      *
      * @param manager The task list to add the task to.
-     * @param ui The user interface to output to.
+     * @return The output to show to the user.
      * @throws AdamException If an error occurs while adding the task.
      */
     @Override
-    public void execute(TaskList manager, Ui ui) throws AdamException {
-        ui.outputText("Bye. Hope to see you again soon!");
+    public String execute(TaskList manager) throws AdamException {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**

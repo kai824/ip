@@ -14,42 +14,51 @@ public class Adam {
     /** An instance of TaskList handling the information of current tasks */
     private TaskList manager;
 
-    /** An instance of Ui handling user interaction */
-    private Ui ui;
-
-    Adam() {
-        this.ui = new Ui();
+    /**
+     * Constructor for adam.core.Adam.
+     *
+     * Initializes the chatbot with a new Ui and a new TaskList.
+     */
+    public Adam() {
         this.manager = new TaskList(new Storage());
     }
 
     /**
-     * Runs the chatbot.
+     * Gets the greeting from the chatbot.
+     *
+     * @return Greeting from the chatbot.
      */
-    public void run() {
-        ui.greet(Adam.CHATBOT_NAME);
+    public String getGreeting() {
+        return "Hello! I'm " + CHATBOT_NAME + ". What can I do for you today?";
+    }
 
-        boolean hasExited = false;
-        while (!hasExited) {
-            String input = ui.getUserInput();
-            ui.printSeparatingLine();
-            try {
-                Command c = Parser.parseInput(input);
-                c.execute(manager, ui);
-
-                hasExited = c.isExit();
-            } catch (AdamException e) {
-                ui.outputText("Oh no! " + e);
-            }
-            ui.printSeparatingLine();
+    /**
+     * Gets the response from the chatbot.
+     *
+     * @param input User input.
+     * @return Response from the chatbot.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parseInput(input);
+            return c.execute(manager);
+        } catch (AdamException e) {
+            return "Oh no! " + e;
         }
     }
 
     /**
-     * Main entry-point for the java.adam.Duke application.
+     * Checks if the user input is an exit command.
      *
-     * @param args Unused.
+     * @param input User input.
+     * @return True if the user input is an exit command, false otherwise.
      */
-    public static void main(String[] args) {
-        new Adam().run();
+    public boolean checkIsExit(String input) {
+        try {
+            Command c = Parser.parseInput(input);
+            return c.isExit();
+        } catch (AdamException e) {
+            return false;
+        }
     }
 }

@@ -3,7 +3,6 @@ package adam.parser;
 import java.util.ArrayList;
 
 import adam.core.TaskList;
-import adam.core.Ui;
 import adam.exceptions.AdamException;
 
 /**
@@ -24,14 +23,16 @@ public class ListCommand extends Command {
      * Lists all tasks in the task list.
      *
      * @param manager The task list to add the task to.
-     * @param ui The user interface to output to.
+     * @return The output to show to the user.
      * @throws AdamException If an error occurs while adding the task.
      */
     @Override
-    public void execute(TaskList manager, Ui ui) throws AdamException {
+    public String execute(TaskList manager) throws AdamException {
         ArrayList<String> outputs = manager.listAll();
+        StringBuilder sb = new StringBuilder();
         for (String output : outputs) {
-            ui.outputText(output);
+            sb.append(output).append("\n");
         }
+        return sb.toString();
     }
 }

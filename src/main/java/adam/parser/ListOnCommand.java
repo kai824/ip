@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import adam.core.TaskList;
-import adam.core.Ui;
 import adam.exceptions.AdamException;
 
 /**
@@ -14,7 +13,13 @@ public class ListOnCommand extends Command {
     /** The date to list tasks on */
     private LocalDate date;
 
-    ListOnCommand(String input) throws AdamException {
+    /**
+     * Constructor for ListOnCommand.
+     *
+     * @param input User input.
+     * @throws AdamException If an error occurs while parsing the input.
+     */
+    public ListOnCommand(String input) throws AdamException {
         super();
         this.date = Parser.parseInputDate(input.split(" ")[1]);
     }
@@ -34,14 +39,16 @@ public class ListOnCommand extends Command {
      * Lists all tasks on the specified date.
      *
      * @param manager The task list to add the task to.
-     * @param ui The user interface to output to.
+     * @return The output to show to the user.
      * @throws AdamException If an error occurs while adding the task.
      */
     @Override
-    public void execute(TaskList manager, Ui ui) throws AdamException {
+    public String execute(TaskList manager) throws AdamException {
         ArrayList<String> outputs = manager.listAllOnDate(this.date);
+        StringBuilder sb = new StringBuilder();
         for (String output : outputs) {
-            ui.outputText(output);
+            sb.append(output).append("\n");
         }
+        return sb.toString();
     }
 }
