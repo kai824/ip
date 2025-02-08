@@ -76,7 +76,7 @@ public class Storage {
 
             FileWriter writer = new FileWriter(this.logPathFile);
             for (Task task : tasks) {
-                writer.write(task.log() + "\n");
+                writer.write(task.toLogString() + "\n");
             }
             writer.close();
         } catch (IOException e) {

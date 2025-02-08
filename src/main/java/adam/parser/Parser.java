@@ -49,7 +49,7 @@ public class Parser {
      * @param date The date to convert.
      * @return The date as a string in the format dd MMM yyyy.
      */
-    public static String toOutputDate(LocalDate date) {
+    public static String formatOutputDate(LocalDate date) {
         return date.format(Parser.OUTPUT_DATE_FORMAT);
     }
 
@@ -59,7 +59,7 @@ public class Parser {
      * @param date The date to convert.
      * @return The date as a string in the format dd-MM-yyyy.
      */
-    public static String toLogDate(LocalDate date) {
+    public static String formatLogDate(LocalDate date) {
         return date.format(Parser.DATE_FORMAT);
     }
 

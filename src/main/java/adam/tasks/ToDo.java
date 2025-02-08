@@ -24,8 +24,8 @@ public class ToDo extends Task {
      * Gets the task as a String for logging.
      */
     @Override
-    public String log() {
-        return "T | " + super.log();
+    public String toLogString() {
+        return "T | " + super.toLogString();
     }
 
     /**

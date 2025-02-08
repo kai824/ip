@@ -107,15 +107,12 @@ public abstract class Task {
         List<String> parts = List.of(logText.split(" \\| "));
         Task task = null;
         try {
-            if (parts.get(0).equals("T")) {
-                task = new ToDo(parts.get(2));
-            } else if (parts.get(0).equals("D")) {
-                task = new Deadline(parts.get(2), Parser.parseInputDate(parts.get(3)));
-            } else if (parts.get(0).equals("E")) {
-                task = new Event(parts.get(2), Parser.parseInputDate(parts.get(3)),
+            switch (parts.get(0)) {
+            case "T" -> task = new ToDo(parts.get(2));
+            case "D" -> task = new Deadline(parts.get(2), Parser.parseInputDate(parts.get(3)));
+            case "E" -> task = new Event(parts.get(2), Parser.parseInputDate(parts.get(3)),
                         Parser.parseInputDate(parts.get(4)));
-            } else {
-                throw new InvalidLogFile();
+            default -> throw new InvalidLogFile();
             }
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidLogFile();
@@ -164,7 +161,7 @@ public abstract class Task {
      *
      * @return the description to be logged.
      */
-    public String log() {
+    public String toLogString() {
         return this.isDone + " | " + this.description;
     }
 

@@ -36,17 +36,17 @@ public class Event extends Task {
     @Override
     public String toString() {
         return String.format("[E]%s (from: %s to: %s)", super.toString(),
-                Parser.toOutputDate(this.from), Parser.toOutputDate(this.to));
+                Parser.formatOutputDate(this.from), Parser.formatOutputDate(this.to));
     }
 
     /**
      * Gets the event as a String for logging.
      */
     @Override
-    public String log() {
+    public String toLogString() {
         // Format back into the input format
-        return String.format("E | %s | %s | %s", super.log(),
-                Parser.toLogDate(this.from), Parser.toLogDate(this.to));
+        return String.format("E | %s | %s | %s", super.toLogString(),
+                Parser.formatLogDate(this.from), Parser.formatLogDate(this.to));
     }
 
     /**

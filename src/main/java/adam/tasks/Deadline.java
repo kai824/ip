@@ -16,7 +16,7 @@ public class Deadline extends Task {
      * Constructs a Deadline object with a specified description and deadline.
      *
      * @param description The description of the task.
-     * @param deadline The deadline date for the task.
+     * @param deadline    The deadline date for the task.
      * @throws AdamException If the description is empty or invalid.
      */
     public Deadline(String description, LocalDate deadline) throws AdamException {
@@ -32,17 +32,17 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(),
-                Parser.toOutputDate(this.deadline));
+                Parser.formatOutputDate(this.deadline));
     }
 
     /**
      * Gets the deadline of the task as a String for logging.
      */
     @Override
-    public String log() {
+    public String toLogString() {
         // Format back into the input format
-        return String.format("D | %s | %s", super.log(),
-                Parser.toLogDate(this.deadline));
+        return String.format("D | %s | %s", super.toLogString(),
+                Parser.formatLogDate(this.deadline));
     }
 
     /**
