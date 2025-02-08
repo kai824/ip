@@ -46,4 +46,19 @@ public class Adam {
             return "Oh no! " + e;
         }
     }
+
+    /**
+     * Checks if the user input is an exit command.
+     *
+     * @param input User input.
+     * @return True if the user input is an exit command, false otherwise.
+     */
+    public boolean checkIsExit(String input) {
+        try {
+            Command c = Parser.parseInput(input);
+            return c.isExit();
+        } catch (AdamException e) {
+            return false;
+        }
+    }
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * Controller for the main GUI.
@@ -52,5 +53,10 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getAdamDialog(response, adamImage));
         userInput.clear();
+
+        if (adam.checkIsExit(input)) {
+            Stage stage = (Stage) sendButton.getScene().getWindow();
+            stage.close();
+        }
     }
 }

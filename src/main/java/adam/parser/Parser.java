@@ -11,8 +11,11 @@ import adam.exceptions.InvalidDate;
  * Static methods to parse user input and create commands.
  */
 public class Parser {
+    /** String DateTime format for date to be read */
+    public static final String DATE_FORMAT_STRING = "dd-MM-yyyy";
+
     /** DateTime Format for dates to be read and output */
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern(DATE_FORMAT_STRING);
     private static final DateTimeFormatter OUTPUT_DATE_FORMAT =
             DateTimeFormatter.ofPattern("dd MMM yyyy");
 
