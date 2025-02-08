@@ -30,6 +30,7 @@ public abstract class Task {
         if (description.equals("")) {
             throw new EmptyDescription();
         }
+        assert !description.contains("|") : "Description should not contain |";
         this.isDone = false;
         this.description = description;
     }
@@ -91,6 +92,9 @@ public abstract class Task {
             List<String> split = splitDescription(parts, List.of("/from", "/to"));
             return new Event(split.get(0), Parser.parseInputDate(split.get(1)),
                     Parser.parseInputDate(split.get(2)));
+        } else if (parts.get(0).equals("fixed")) {
+            List<String> split = splitDescription(parts, List.of("/takes"));
+            return new FixedDuration(split.get(0), Parser.parseDuration(split.get(1)));
         }
         throw new InvalidCommand();
     }
@@ -112,6 +116,7 @@ public abstract class Task {
             case "D" -> task = new Deadline(parts.get(2), Parser.parseInputDate(parts.get(3)));
             case "E" -> task = new Event(parts.get(2), Parser.parseInputDate(parts.get(3)),
                         Parser.parseInputDate(parts.get(4)));
+            case "F" -> task = new FixedDuration(parts.get(2), Parser.parseDuration(parts.get(3)));
             default -> throw new InvalidLogFile();
             }
         } catch (IndexOutOfBoundsException e) {

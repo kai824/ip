@@ -1,8 +1,10 @@
 package adam.parser;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 
 import adam.command.AddCommand;
 import adam.command.ByeCommand;
@@ -15,6 +17,7 @@ import adam.command.ListOnCommand;
 import adam.command.UnmarkCommand;
 import adam.exceptions.AdamException;
 import adam.exceptions.InvalidDate;
+import adam.exceptions.InvalidDuration;
 
 /**
  * Static methods to parse user input and create commands.
@@ -61,6 +64,50 @@ public class Parser {
      */
     public static String formatLogDate(LocalDate date) {
         return date.format(Parser.DATE_FORMAT);
+    }
+
+    /**
+     * Parses the input string into a Duration object.
+     *
+     * @param input The input string representing the duration in minutes.
+     * @return A Duration object parsed from the input duration string.
+     * @throws AdamException If the input string is not valid.
+     */
+    public static Duration parseDuration(String input) throws AdamException {
+        List<String> parts = List.of(input.split(" "));
+        Duration result = Duration.ZERO;
+        try {
+            for (String part:parts) {
+                if (part.endsWith("h")) {
+                    result = result.plusHours(Long.parseLong(part.substring(0, part.length() - 1)));
+                } else if (part.endsWith("m")) {
+                    result = result.plusMinutes(Long.parseLong(part.substring(0, part.length() - 1)));
+                } else {
+                    throw new InvalidDuration();
+                }
+            }
+        } catch (NumberFormatException e) {
+            throw new InvalidDuration();
+        }
+        return result;
+    }
+
+    /**
+     * Converts a Duration to a string in the format "xh ym" (x hours, y minutes).
+     *
+     * @param duration The duration to convert.
+     * @return The duration as a string in the format "xh ym".
+     */
+    public static String formatDuration(Duration duration) {
+        long hours = duration.toHours();
+        long mins = duration.toMinutes() % 60;
+        if (mins == 0) {
+            return String.format("%dh", hours);
+        } else if (hours == 0) {
+            return String.format("%dm", mins);
+        } else {
+            return String.format("%dh %dm", hours, mins);
+        }
     }
 
     /**
