@@ -24,6 +24,15 @@ public class Adam {
     }
 
     /**
+     * Gets the greeting from the chatbot.
+     *
+     * @return Greeting from the chatbot.
+     */
+    public String getGreeting() {
+        return "Hello! I'm " + CHATBOT_NAME + ". What can I do for you today?";
+    }
+
+    /**
      * Gets the response from the chatbot.
      *
      * @param input User input.

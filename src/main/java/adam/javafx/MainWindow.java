@@ -35,6 +35,8 @@ public class MainWindow extends AnchorPane {
     /** Injects the Adam instance */
     public void setAdam(Adam a) {
         adam = a;
+        String greeting = a.getGreeting();
+        dialogContainer.getChildren().add(DialogBox.getAdamDialog(greeting, adamImage));
     }
 
     /**
