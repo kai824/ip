@@ -1,7 +1,7 @@
 package adam.core;
 
+import adam.command.Command;
 import adam.exceptions.AdamException;
-import adam.parser.Command;
 import adam.parser.Parser;
 
 /**

@@ -1,4 +1,4 @@
-package adam.parser;
+package adam.command;
 
 import adam.core.TaskList;
 import adam.exceptions.AdamException;

@@ -1,27 +1,24 @@
-package adam.parser;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
+package adam.command;
 
 import adam.core.TaskList;
 import adam.exceptions.AdamException;
 
 /**
- * Represents a command to list all tasks on a specific date.
+ * Represents a command to unmark a task as done.
  */
-public class ListOnCommand extends Command {
-    /** The date to list tasks on */
-    private LocalDate date;
+public class UnmarkCommand extends Command {
+    /** The index of the task to unmark */
+    private int index;
 
     /**
-     * Constructor for ListOnCommand.
+     * Constructor for UnmarkCommand.
      *
      * @param input User input.
      * @throws AdamException If an error occurs while parsing the input.
      */
-    public ListOnCommand(String input) throws AdamException {
+    public UnmarkCommand(String input) throws AdamException {
         super();
-        this.date = Parser.parseInputDate(input.split(" ")[1]);
+        this.index = Integer.parseInt(input.split(" ")[1]) - 1;
     }
 
     /**
@@ -32,11 +29,11 @@ public class ListOnCommand extends Command {
      */
     public static boolean isMatch(String input) {
         String[] inputParts = input.split(" ");
-        return inputParts[0].equals("listOn") && inputParts.length == 2;
+        return inputParts[0].equals("unmark") && inputParts.length == 2;
     }
 
     /**
-     * Lists all tasks on the specified date.
+     * Unmarks the task as done and outputs the task to the user.
      *
      * @param manager The task list to add the task to.
      * @return The output to show to the user.
@@ -44,11 +41,11 @@ public class ListOnCommand extends Command {
      */
     @Override
     public String execute(TaskList manager) throws AdamException {
-        ArrayList<String> outputs = manager.listAllOnDate(this.date);
-        StringBuilder sb = new StringBuilder();
-        for (String output : outputs) {
-            sb.append(output).append("\n");
+        try {
+            String taskText = manager.unmarkDone(this.index);
+            return "OK, I've marked this task as not done yet:\n  " + taskText;
+        } catch (IndexOutOfBoundsException e) {
+            return "Task index out of bounds!";
         }
-        return sb.toString();
     }
 }

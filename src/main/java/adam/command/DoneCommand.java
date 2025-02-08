@@ -1,23 +1,22 @@
-package adam.parser;
+package adam.command;
 
 import adam.core.TaskList;
 import adam.exceptions.AdamException;
-import adam.tasks.Task;
 
 /**
- * Represents a command to delete a task from the task list.
+ * Represents a command to mark a task as done.
  */
-public class DeleteCommand extends Command {
-    /** The index of the task to delete */
+public class DoneCommand extends Command {
+    /** The index of the task to mark as done */
     private int index;
 
     /**
-     * Constructor for a delete command.
+     * Constructor for DoneCommand.
      *
      * @param input The input to the command.
-     * @throws AdamException If an error occurs while creating the command.
+     * @throws AdamException If an error occurs while parsing the input.
      */
-    public DeleteCommand(String input) throws AdamException {
+    public DoneCommand(String input) throws AdamException {
         super();
         this.index = Integer.parseInt(input.split(" ")[1]) - 1;
     }
@@ -30,11 +29,11 @@ public class DeleteCommand extends Command {
      */
     public static boolean isMatch(String input) {
         String[] inputParts = input.split(" ");
-        return inputParts[0].equals("delete") && inputParts.length == 2;
+        return inputParts[0].equals("mark") && inputParts.length == 2;
     }
 
     /**
-     * Deletes the task from the task list and outputs the task to the user.
+     * Marks the task as done and outputs the task to the user.
      *
      * @param manager The task list to add the task to.
      * @return The output to show to the user.
@@ -43,8 +42,8 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList manager) throws AdamException {
         try {
-            Task task = manager.deleteTask(this.index);
-            return "OK, I've deleted this task:\n " + task;
+            String taskText = manager.markDone(this.index);
+            return "Nice! I've marked this task as done:\n  " + taskText;
         } catch (IndexOutOfBoundsException e) {
             return "Task index out of bounds!";
         }

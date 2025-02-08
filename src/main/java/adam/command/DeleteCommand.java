@@ -1,22 +1,23 @@
-package adam.parser;
+package adam.command;
 
 import adam.core.TaskList;
 import adam.exceptions.AdamException;
+import adam.tasks.Task;
 
 /**
- * Represents a command to mark a task as done.
+ * Represents a command to delete a task from the task list.
  */
-public class DoneCommand extends Command {
-    /** The index of the task to mark as done */
+public class DeleteCommand extends Command {
+    /** The index of the task to delete */
     private int index;
 
     /**
-     * Constructor for DoneCommand.
+     * Constructor for a delete command.
      *
      * @param input The input to the command.
-     * @throws AdamException If an error occurs while parsing the input.
+     * @throws AdamException If an error occurs while creating the command.
      */
-    public DoneCommand(String input) throws AdamException {
+    public DeleteCommand(String input) throws AdamException {
         super();
         this.index = Integer.parseInt(input.split(" ")[1]) - 1;
     }
@@ -29,11 +30,11 @@ public class DoneCommand extends Command {
      */
     public static boolean isMatch(String input) {
         String[] inputParts = input.split(" ");
-        return inputParts[0].equals("mark") && inputParts.length == 2;
+        return inputParts[0].equals("delete") && inputParts.length == 2;
     }
 
     /**
-     * Marks the task as done and outputs the task to the user.
+     * Deletes the task from the task list and outputs the task to the user.
      *
      * @param manager The task list to add the task to.
      * @return The output to show to the user.
@@ -42,8 +43,8 @@ public class DoneCommand extends Command {
     @Override
     public String execute(TaskList manager) throws AdamException {
         try {
-            String taskText = manager.markDone(this.index);
-            return "Nice! I've marked this task as done:\n  " + taskText;
+            Task task = manager.deleteTask(this.index);
+            return "OK, I've deleted this task:\n " + task;
         } catch (IndexOutOfBoundsException e) {
             return "Task index out of bounds!";
         }

@@ -1,24 +1,28 @@
-package adam.parser;
+package adam.command;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 import adam.core.TaskList;
 import adam.exceptions.AdamException;
+import adam.parser.Parser;
 
 /**
- * Represents a command to unmark a task as done.
+ * Represents a command to list all tasks on a specific date.
  */
-public class UnmarkCommand extends Command {
-    /** The index of the task to unmark */
-    private int index;
+public class ListOnCommand extends Command {
+    /** The date to list tasks on */
+    private LocalDate date;
 
     /**
-     * Constructor for UnmarkCommand.
+     * Constructor for ListOnCommand.
      *
      * @param input User input.
      * @throws AdamException If an error occurs while parsing the input.
      */
-    public UnmarkCommand(String input) throws AdamException {
+    public ListOnCommand(String input) throws AdamException {
         super();
-        this.index = Integer.parseInt(input.split(" ")[1]) - 1;
+        this.date = Parser.parseInputDate(input.split(" ")[1]);
     }
 
     /**
@@ -29,11 +33,11 @@ public class UnmarkCommand extends Command {
      */
     public static boolean isMatch(String input) {
         String[] inputParts = input.split(" ");
-        return inputParts[0].equals("unmark") && inputParts.length == 2;
+        return inputParts[0].equals("listOn") && inputParts.length == 2;
     }
 
     /**
-     * Unmarks the task as done and outputs the task to the user.
+     * Lists all tasks on the specified date.
      *
      * @param manager The task list to add the task to.
      * @return The output to show to the user.
@@ -41,11 +45,11 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList manager) throws AdamException {
-        try {
-            String taskText = manager.unmarkDone(this.index);
-            return "OK, I've marked this task as not done yet:\n  " + taskText;
-        } catch (IndexOutOfBoundsException e) {
-            return "Task index out of bounds!";
+        ArrayList<String> outputs = manager.listAllOnDate(this.date);
+        StringBuilder sb = new StringBuilder();
+        for (String output : outputs) {
+            sb.append(output).append("\n");
         }
+        return sb.toString();
     }
 }
