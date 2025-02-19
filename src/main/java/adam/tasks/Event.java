@@ -26,6 +26,7 @@ public class Event extends Task {
         super(description);
         this.from = from;
         this.to = to;
+        assert(!this.from.isAfter(this.to)) : "Start date should be before or equal to end date";
     }
 
     /**
